@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/*
+  OMEGA CONSTRUCTION — design tokens
+  Palette derived directly from the company logo:
+    · Navy   #00457c  (the "Ō" and macron)  → brand / accent
+    · Ink    #1f1b1c  (the wordmark)         → text + deep sections
+  Dark sections use a deep navy so the whole site reads as one brand system.
+*/
+
+@theme {
+  /* neutrals (cool, to sit with navy) */
+  --color-ink: #0c2337;        /* deep navy — dark sections + darkest text */
+  --color-ink-2: #16344f;      /* raised navy surface / image placeholders */
+  --color-ink-3: #204e73;
+  --color-slate: #45566a;      /* body text on light */
+  --color-mute: #6b7a8a;       /* muted labels */
+  --color-line: #e4e8ee;       /* hairline borders */
+  --color-line-2: #d3dae2;
+  --color-surface: #ffffff;
+  --color-sand: #f2f5f9;       /* light section background (cool) */
+  --color-sand-2: #e7edf3;
+
+  /* brand blue (from logo #00457c) */
+  --color-accent: #005a9e;         /* interactive: buttons, links */
+  --color-accent-strong: #00457c;  /* exact logo navy — hover / emphasis */
+  --color-accent-bright: #5fa4d8;  /* highlights on dark backgrounds */
+  --color-accent-tint: #e8f1f9;
+
+  /* status */
+  --color-safety: #1f7a4d;
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+
+  --radius: 0.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+}
+
+/* faint blueprint grid used behind dark sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
