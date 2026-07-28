@@ -210,6 +210,10 @@ export type Project = {
   location: string;
   architect?: string;
   summary: string;
+  overview: string[];
+  specification: string[];
+  metaTitle: string;
+  metaDescription: string;
 };
 
 /** Real flagship case studies recovered from the existing site. */
@@ -222,6 +226,17 @@ export const projects: Project[] = [
     architect: "Koia Architects",
     summary:
       "Award-winning architectural reclad and refurbishment — internal walls removed and replaced with structural steel for full open-plan living, fully automated with the highest-quality fittings.",
+    overview: [
+      "This architecturally remodelled home was extensively reclad and refurbished using a palette of quality materials and excellence in construction detail to give cohesion to the whole. A glazed entrance gallery serves three downstairs bedrooms, with sliders offering the first connection to outdoor living.",
+      "Upstairs is devoted to open-plan living with easy flow to generous alfresco living, including a built-in barbecue. The kitchen is a custom-designed showpiece, its bespoke island bench borrowing material from the feature front door, and the design culminates in a glazed office mezzanine nestled into the home's apex, skewered by a black steel beam.",
+    ],
+    specification: [
+      "A high-quality-detail build where no expense was spared. Omega Construction removed all of the internal walls and strengthened the home with structural steel beams to create a large open-plan living space that extends the length of the structure.",
+      "Only the highest-quality fittings were used and the home is fully automated, with extensive use of louvres to direct natural light — resulting in a phenomenal, award-winning refurbishment.",
+    ],
+    metaTitle: "Urban Oasis, Ponsonby | Architectural Home Remodel",
+    metaDescription:
+      "Award-winning architectural reclad and refurbishment in Ponsonby, Auckland — structural steel, open-plan living and full home automation by Omega Construction.",
   },
   {
     slug: "south-pacific-pictures",
@@ -230,6 +245,16 @@ export const projects: Project[] = [
     location: "8 Tolich Place, Auckland",
     summary:
       "A new open-plan administration floor built above live ground-floor offices, with a bespoke steel staircase — delivered around an operating film set and busy studio.",
+    overview: [
+      "As a result of business expansion, South Pacific Pictures wanted to create a brand-new open-plan administration workspace on a new level above its original existing ground-floor offices.",
+      "The modest entrance was professionally reconstructed to create a spacious feel to the reception area. A grand staircase — steel stringers holding concrete landings and treads in place — leads up to the new first-floor administration area, where large windows, sliding joinery and a roof deck at the rear transport the outside in.",
+    ],
+    specification: [
+      "The challenge for Omega Construction was to complete the project while working around a live film set and busy administration office. Production was located on the main level while the studio was directly adjacent, with filming continuing throughout the build.",
+    ],
+    metaTitle: "South Pacific Pictures | Commercial Fit-Out Auckland",
+    metaDescription:
+      "A new open-plan administration floor with a bespoke steel staircase, built above live ground-floor offices at South Pacific Pictures — delivered around an operating film set.",
   },
   {
     slug: "the-sentinel-takapuna",
@@ -239,6 +264,17 @@ export const projects: Project[] = [
     architect: "Avery Team Architects",
     summary:
       "Transformed the level-4 communal area of a 30-storey residential tower with sheltered spaces and structural glass wind barriers around the 25m heated swimming pool.",
+    overview: [
+      "The Sentinel Tower is a luxury residential skyscraper located on Auckland's North Shore. Omega Construction was tasked with transforming the outdoor communal area into a more practical and user-friendly environment.",
+      "The result was the creation of enjoyable, sheltered spaces throughout the communal area and protective glass wind barriers surrounding the swimming pool.",
+    ],
+    specification: [
+      "The communal area sits on level 4 of the 30-storey tower, open to the elements and prone to gale-force winds that previously made the space unpleasant and unusable at times.",
+      "Omega upgraded the structure and replaced the glass surrounding the 25m x 6m heated swimming pool, architecturally securing the 2.2m-high glass screens to reinforced concrete panels.",
+    ],
+    metaTitle: "The Sentinel, Takapuna | Structural Glass & Communal Upgrade",
+    metaDescription:
+      "Transforming the level-4 communal area of a 30-storey Takapuna tower — sheltered spaces and structural glass wind barriers around a 25m heated pool, by Omega Construction.",
   },
   {
     slug: "patey-street",
@@ -248,24 +284,82 @@ export const projects: Project[] = [
     architect: "Malcolm Walker Architects",
     summary:
       "Two solid concrete, two-storey homes on a compact 660m² site — modern in style yet designed to sit within an established street, built to last the test of time.",
+    overview: [
+      "This development was the result of a simple brief from the owner to the architect: maximise the site with homes that are of high quality, that look good but are practical to live in.",
+      "The original home on the property was a big part of the family history, so it was important to the owner that it remained intact. The home was sold to a building-removals specialist and in 2015 was relocated to a small town in the Waikato, where it remains today.",
+    ],
+    specification: [
+      "These two, two-storey homes were constructed on a site measuring only 660m² overall. The structure of the homes is solid concrete, including all walls and floors.",
+      "While a modern style, they fit effectively into the existing established street format. These solid homes were successfully completed to specification and will last the test of time.",
+    ],
+    metaTitle: "Patey Street | Solid Concrete Homes Auckland",
+    metaDescription:
+      "Two solid concrete, two-storey homes on a compact 660m² Auckland site — modern yet in keeping with an established street, built by Omega Construction.",
   },
 ];
 
+export type Product = {
+  slug: string;
+  name: string;
+  tagline: string;
+  blurb: string;
+  formats?: string[];
+  description: string[];
+  features: string[];
+  usedBy?: string[];
+  resources?: { label: string; href: string }[];
+  metaTitle: string;
+  metaDescription: string;
+};
+
 /** Sole NZ distributorships. */
-export const products = [
+export const products: Product[] = [
   {
     slug: "cem-gon",
     name: "Cem-Gon™",
     tagline: "Sole NZ distribution agent",
     blurb:
-      "A non-hazardous, naturally formulated system that removes concrete, slurry, mortar, grout and plaster splashes from a wide range of surfaces. Available in 500ml spray bottles and 5L containers, with test reports and safety data available.",
+      "A non-hazardous, naturally formulated system that removes concrete, slurry, mortar, grout and plaster splashes from a wide range of surfaces. Available in 500ml spray bottles and 5L containers.",
+    formats: ["500ml spray bottle", "5L container"],
+    description: [
+      "Cem-Gon™ was developed to provide the cement industry with an easily applied system to remove cement splashes. It's your solution for the removal of concrete, slurry, mortar, grout and plaster splashes from architectural coatings, painted surfaces, glazing, anodised and powder-coated surfaces, ceramic tiles, stone, asphalt and stainless steel.",
+      "Omega Construction (Auckland) Limited is the sole distribution agent for Cem-Gon™ to the cement industry in New Zealand.",
+    ],
+    features: [
+      "Non-hazardous formula",
+      "Natural and organic ingredients",
+      "Removes concrete, slurry, mortar, grout and plaster",
+      "Works across many common building surfaces",
+    ],
+    usedBy: ["Builders", "Plasterers", "Tile Layers", "Bricklayers", "Blocklayers"],
+    resources: [
+      { label: "Report A — Appraisal on effect on various substances", href: "#" },
+      { label: "Report B — Test procedure CG-01 on material surfaces", href: "#" },
+      { label: "Safety Data Sheet (SDS)", href: "#" },
+    ],
+    metaTitle: "Cem-Gon™ NZ | Concrete, Mortar & Grout Splash Remover",
+    metaDescription:
+      "Cem-Gon™ — a non-hazardous, naturally formulated remover of concrete, slurry, mortar, grout and plaster splashes. Sole NZ distributor Omega Construction. 500ml & 5L.",
   },
   {
     slug: "fab-form",
     name: "Fab-Form",
     tagline: "Sole NZ distributor",
     blurb:
-      "Fab-Form Industries is a world leader in fabric forming, setting a higher standard in sustainable building. Made from a biodegradable fabric, it's fast, light, economic and green — build green from the ground up.",
+      "Fab-Form Industries is a world leader in fabric forming, setting a higher standard in sustainable building. Made from a biodegradable fabric — fast, light, economic and green.",
+    description: [
+      "Omega Construction is the sole distributor of Fab-Form products in New Zealand. Fab-Form Industries is a world leader in fabric forming that is setting a higher standard in sustainable building.",
+      "Made from a biodegradable fabric, Fab-Form is fast, light, economic and green — build green from the ground up.",
+    ],
+    features: [
+      "Biodegradable fabric",
+      "Fast and light to work with",
+      "Economical",
+      "Sustainable — build green from the ground up",
+    ],
+    metaTitle: "Fab-Form NZ | Sustainable Fabric Forming Systems",
+    metaDescription:
+      "Fab-Form — world-leading, biodegradable fabric forming for sustainable building. Sole New Zealand distributor: Omega Construction. Fast, light, economic and green.",
   },
 ];
 
