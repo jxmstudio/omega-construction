@@ -27,7 +27,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center" aria-label="Omega Construction home">
           <Image
-            src="/brand/omega-logo.png"
+            src="/brand/omega-mark.png"
             alt="Omega Construction"
             width={249}
             height={94}

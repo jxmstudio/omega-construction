@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image
-            src="/brand/omega-logo-white.png"
+            src="/brand/omega-mark-white.png"
             alt="Omega Construction"
             width={249}
             height={94}

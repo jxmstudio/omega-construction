@@ -58,6 +58,12 @@ export type Service = {
   short: string;
   description: string;
   sectors: string[];
+  metaTitle: string;
+  metaDescription: string;
+  intro: string[];
+  includes: string[];
+  /** Which portfolio category to surface as related work. */
+  relatedCategory?: "Commercial" | "Residential";
 };
 
 export const services: Service[] = [
@@ -68,6 +74,21 @@ export const services: Service[] = [
     description:
       "Single and multi-storey structure, new builds and renovations delivered to programme, with the health & safety systems commercial tenders demand — including seismic upgrading.",
     sectors: ["Office", "Retail", "Mixed-use", "Seismic upgrades"],
+    metaTitle: "Commercial Builder Auckland | Commercial Construction",
+    metaDescription:
+      "Auckland commercial construction — single & multi-storey new builds, structural work, renovations and seismic upgrades. Site Safe certified, Registered Master Builder since 1994.",
+    intro: [
+      "Omega Construction has delivered commercial construction across Auckland for three decades — single and multi-storey structures, new builds, renovations and seismic upgrades for office, retail and mixed-use spaces.",
+      "For commercial clients comparing tenderers, our Site Safe membership, Site Smart H&S management and SiteWise accreditation aren't a footnote — they're the assurance your project runs safely, to programme and to code.",
+    ],
+    includes: [
+      "New commercial builds, single and multi-storey",
+      "Structural work and building renovations",
+      "Seismic strengthening and upgrades",
+      "Full project management and council liaison",
+      "Health & safety compliance on every site",
+    ],
+    relatedCategory: "Commercial",
   },
   {
     slug: "residential-building-renovations",
@@ -76,6 +97,21 @@ export const services: Service[] = [
     description:
       "Upper-end residential building and renovation — new builds including multiple dwellings, architectural remodels, recladding, extensions and full refurbishment of existing homes.",
     sectors: ["New homes", "Multiple dwellings", "Recladding", "Extensions"],
+    metaTitle: "House Renovation & New Home Builder Auckland",
+    metaDescription:
+      "Upper-end Auckland home building and renovation — new homes, architectural remodels, recladding, extensions and refurbishment. Registered Master Builder, award-winning work.",
+    intro: [
+      "From architecturally remodelled homes to new builds and multiple dwellings, Omega Construction brings a high-quality-detail approach to upper-end Auckland residential — work that has earned award-winning recognition.",
+      "We remove internal walls and strengthen with structural steel, reclad and refurbish, and finish with only the highest-quality fittings — working alongside your architect to realise the design.",
+    ],
+    includes: [
+      "New homes and multiple dwellings",
+      "Architectural remodels and open-plan conversions",
+      "Recladding and weathertightness remediation",
+      "Extensions, alterations and full refurbishment",
+      "Structural steel and high-detail finishing",
+    ],
+    relatedCategory: "Residential",
   },
   {
     slug: "interior-fit-outs-refurbishment",
@@ -84,6 +120,21 @@ export const services: Service[] = [
     description:
       "Transforming existing spaces — interior fit-out and refurbishment of existing buildings across commercial and residential, including change-of-use projects.",
     sectors: ["Commercial", "Hospitality", "Change-of-use"],
+    metaTitle: "Commercial Fit-Out & Refurbishment Auckland",
+    metaDescription:
+      "Auckland interior fit-outs and refurbishment for existing commercial and residential buildings — hospitality, entertainment and change-of-use projects. Delivered around live operations.",
+    intro: [
+      "We transform existing buildings — interior fit-out and refurbishment across commercial and residential spaces, including hospitality, entertainment and change-of-use projects.",
+      "Our teams are experienced at working within live, operating environments — completing fit-outs around busy offices and trading spaces with minimal disruption.",
+    ],
+    includes: [
+      "Commercial office and retail fit-outs",
+      "Hospitality and entertainment spaces",
+      "Change-of-use conversions",
+      "Refurbishment of existing buildings",
+      "Work staged around live operations",
+    ],
+    relatedCategory: "Commercial",
   },
   {
     slug: "alterations-structural-work",
@@ -92,6 +143,20 @@ export const services: Service[] = [
     description:
       "The 'you name it, we can build it' capability — alterations, extensions, maintenance and structural work across residential and commercial buildings.",
     sectors: ["Alterations", "Extensions", "Structural", "Maintenance"],
+    metaTitle: "Building Alterations & Structural Work Auckland",
+    metaDescription:
+      "Auckland building alterations, extensions, structural work and maintenance — residential and commercial. Registered Master Builder, Licensed Building Practitioner since 1994.",
+    intro: [
+      "You name it, we can build it. Omega Construction handles alterations, extensions, structural work and maintenance across residential and commercial buildings.",
+      "Backed by a Licensed Building Practitioner and 30+ years of experience, we take on the structural challenges other builders pass on — with the engineering and compliance handled end to end.",
+    ],
+    includes: [
+      "Structural alterations and reconfiguration",
+      "Extensions and additions",
+      "Structural steel and strengthening",
+      "Ongoing building maintenance",
+      "Engineering and consent coordination",
+    ],
   },
   {
     slug: "project-management",
@@ -100,6 +165,20 @@ export const services: Service[] = [
     description:
       "We take your project from concept through to completion — organising and managing all sub-trades, working with council, and handling every health & safety compliance obligation.",
     sectors: ["Sub-trade coordination", "Council liaison", "H&S compliance"],
+    metaTitle: "Construction Project Management Auckland",
+    metaDescription:
+      "End-to-end construction project management in Auckland — sub-trade coordination, council liaison and health & safety compliance, concept to completion. Registered Master Builder.",
+    intro: [
+      "Omega Construction can take your project from concept through to completion. We effectively organise and manage all sub-trades, work with council, and handle every health & safety compliance obligation.",
+      "It's the same disciplined, end-to-end quality control process we apply to our own builds — starting at tender and carried through to handover.",
+    ],
+    includes: [
+      "Concept-to-completion delivery",
+      "Coordination of all sub-trades",
+      "Council and consent liaison",
+      "Health & safety compliance management",
+      "Programme, budget and quality control",
+    ],
   },
   {
     slug: "subdivision-management",
@@ -108,6 +187,19 @@ export const services: Service[] = [
     description:
       "Well-experienced in subdivision management — we manage the surveyors, sub-trades and council to make your subdivision compliant.",
     sectors: ["Surveyors", "Consents", "Compliance"],
+    metaTitle: "Subdivision Management Auckland",
+    metaDescription:
+      "Experienced subdivision management in Auckland — we manage surveyors, sub-trades and council to make your subdivision compliant. Registered Master Builder since 1994.",
+    intro: [
+      "We are well-experienced in subdivision management — managing the surveyors, sub-trades and council required to make your subdivision compliant.",
+      "From early planning through to sign-off, we keep the moving parts coordinated so your subdivision progresses smoothly.",
+    ],
+    includes: [
+      "Surveyor and sub-trade coordination",
+      "Council and consent management",
+      "Compliance to sign-off",
+      "Programme and cost oversight",
+    ],
   },
 ];
 

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { credentials, products, projects, services, site, stats } from "@/lib/site";
+import ProjectCarousel from "@/components/ProjectCarousel";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
@@ -17,18 +19,18 @@ export default function Home() {
           }}
         />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/70">
+          <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/70">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-bright" />
             Auckland · Established {site.established} · Registered Master Builder
           </span>
-          <h1 className="mt-6 max-w-3xl font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl md:text-6xl">
+          <h1 className="animate-fade-up mt-6 max-w-3xl font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl md:text-6xl [animation-delay:80ms]">
             Thirty years of proven construction across Auckland.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+          <p className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-white/75 [animation-delay:160ms]">
             Commercial and residential building, alterations and fit-outs —
             delivered by a Site Safe–certified team trusted since {site.established}.
           </p>
-          <div className="mt-9 flex flex-wrap gap-4">
+          <div className="animate-fade-up mt-9 flex flex-wrap gap-4 [animation-delay:240ms]">
             <Link
               href="/contact"
               className="rounded bg-accent px-6 py-3 font-semibold text-white transition-colors hover:bg-accent-strong"
@@ -116,31 +118,32 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s, i) => (
-              <Link
-                key={s.slug}
-                href={`/services/${s.slug}`}
-                className="group relative flex flex-col rounded-lg border border-line-2 bg-surface p-7 transition-shadow hover:shadow-lg"
-              >
-                <span className="font-display text-sm font-bold text-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 font-display text-xl font-bold text-ink group-hover:text-accent">
-                  {s.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">{s.short}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {s.sectors.map((sec) => (
-                    <span
-                      key={sec}
-                      className="rounded border border-line px-2 py-0.5 text-xs text-mute"
-                    >
-                      {sec}
-                    </span>
-                  ))}
-                </div>
-              </Link>
+              <Reveal key={s.slug} delay={(i % 3) * 80} className="h-full">
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="group relative flex h-full flex-col rounded-lg border border-line-2 bg-surface p-7 transition-shadow hover:shadow-lg"
+                >
+                  <span className="font-display text-sm font-bold text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 font-display text-xl font-bold text-ink group-hover:text-accent">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">{s.short}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {s.sectors.map((sec) => (
+                      <span
+                        key={sec}
+                        className="rounded border border-line px-2 py-0.5 text-xs text-mute"
+                      >
+                        {sec}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -160,34 +163,8 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, 3).map((p) => (
-            <Link
-              key={p.slug}
-              href={`/projects/${p.slug}`}
-              className="group overflow-hidden rounded-lg border border-line bg-surface"
-            >
-              {/* image placeholder — swap for real project photography */}
-              <div className="relative flex aspect-[4/3] items-center justify-center bg-ink-2 text-white/30">
-                <div className="bg-grid absolute inset-0 opacity-40" />
-                <span className="relative font-display text-sm uppercase tracking-wider">
-                  Project image
-                </span>
-              </div>
-              <div className="p-5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-accent">
-                  {p.category} · {p.location}
-                </span>
-                <h3 className="mt-1 font-display text-lg font-bold text-ink group-hover:text-accent">
-                  {p.title}
-                </h3>
-                <p className="mt-1 line-clamp-3 text-sm text-slate">{p.summary}</p>
-                {p.architect && (
-                  <p className="mt-2 text-xs text-mute">Architect · {p.architect}</p>
-                )}
-              </div>
-            </Link>
-          ))}
+        <div className="mt-10">
+          <ProjectCarousel projects={projects} />
         </div>
       </section>
 
