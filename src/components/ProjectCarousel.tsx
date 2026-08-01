@@ -58,7 +58,9 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
                 fill
                 sizes="(max-width: 1280px) 100vw, 1280px"
                 priority={i === 0}
-                className="object-cover"
+                className={`object-cover transition-transform ease-out duration-[6000ms] ${
+                  i === index ? "scale-110" : "scale-100"
+                }`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/25" />
             </div>
@@ -106,6 +108,21 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       >
         ›
       </button>
+
+      {/* autoplay progress bar */}
+      {count > 1 && (
+        <div className="absolute inset-x-0 bottom-0 z-10 h-1 bg-white/10">
+          <div
+            key={index}
+            data-progress
+            className="h-full origin-left bg-accent-bright"
+            style={{
+              animation: `progress-fill ${AUTOPLAY_MS}ms linear forwards`,
+              animationPlayState: paused ? "paused" : "running",
+            }}
+          />
+        </div>
+      )}
 
       {/* dots */}
       <div className="absolute bottom-5 right-6 z-10 flex items-center gap-2">

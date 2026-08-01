@@ -51,6 +51,10 @@ export default function ProjectsExplorer({ projects }: { projects: Project[] }) 
               <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
                 {p.category}
               </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="absolute bottom-4 left-4 flex translate-y-2 items-center gap-2 text-sm font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                View case study →
+              </span>
             </div>
             <div className="p-6">
               <span className="text-xs font-semibold uppercase tracking-wider text-mute">

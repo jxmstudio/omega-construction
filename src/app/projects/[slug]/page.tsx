@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, site, SHOW_PROJECT_VALUES } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
+import ProjectGallery from "@/components/ProjectGallery";
 
 type Params = { slug: string };
 
@@ -166,24 +167,7 @@ export default async function ProjectDetail({
       {/* gallery */}
       {project.gallery.length > 0 && (
         <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-20">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {project.gallery.map((src, i) => (
-              <div
-                key={src}
-                className={`relative overflow-hidden rounded-xl border border-line bg-ink-2 ${
-                  i === 0 ? "aspect-[4/3] sm:col-span-2 sm:aspect-[16/9]" : "aspect-[4/3]"
-                }`}
-              >
-                <Image
-                  src={src}
-                  alt={`${project.title} — photo ${i + 1}`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <ProjectGallery images={project.gallery} title={project.title} />
         </section>
       )}
 

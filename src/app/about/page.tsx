@@ -3,6 +3,7 @@ import Link from "next/link";
 import { credentials, processSteps, site, stats, values } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import Counter from "@/components/Counter";
 
 export const metadata: Metadata = {
   title: "About Omega Construction | Auckland Builder Since 1994",
@@ -77,7 +78,9 @@ export default function AboutPage() {
               <dl className="grid grid-cols-2 gap-6">
                 {stats.map((s) => (
                   <div key={s.label}>
-                    <dt className="font-display text-2xl font-bold text-accent">{s.value}</dt>
+                    <dt className="font-display text-2xl font-bold text-accent">
+                      <Counter value={s.value} />
+                    </dt>
                     <dd className="mt-1 text-xs leading-snug text-mute">{s.label}</dd>
                   </div>
                 ))}

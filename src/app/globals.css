@@ -89,10 +89,25 @@
   transform: none;
 }
 
+/* slow cinematic zoom for hero / carousel imagery */
+@keyframes ken-burns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.09); }
+}
+.ken-burns { animation: ken-burns 14s ease-out both; }
+
+/* autoplay progress bar (carousel) */
+@keyframes progress-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .reveal {
-    animation: none;
+  .reveal,
+  .ken-burns,
+  [data-progress] {
+    animation: none !important;
     transition: none;
     opacity: 1;
     transform: none;

@@ -2,14 +2,26 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nav, site } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-surface/90 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 border-b bg-surface/90 backdrop-blur transition-shadow ${
+        scrolled ? "border-line shadow-md" : "border-transparent"
+      }`}
+    >
       {/* utility bar */}
       <div className="hidden bg-ink text-white/80 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5 text-xs">
@@ -24,7 +36,11 @@ export default function Header() {
       </div>
 
       {/* main bar */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
+          scrolled ? "py-2.5" : "py-4"
+        }`}
+      >
         <Link href="/" className="flex items-center" aria-label="Omega Construction home">
           <Image
             src="/brand/omega-mark.png"
@@ -32,7 +48,7 @@ export default function Header() {
             width={249}
             height={94}
             priority
-            className="h-11 w-auto"
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-9" : "h-11"}`}
           />
         </Link>
 

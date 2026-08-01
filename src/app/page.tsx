@@ -11,6 +11,7 @@ import {
 } from "@/lib/site";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import Reveal from "@/components/Reveal";
+import Counter from "@/components/Counter";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-20"
+          className="ken-burns object-cover opacity-20"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/50" />
         <div className="bg-grid absolute inset-0 opacity-70" />
@@ -67,7 +68,7 @@ export default function Home() {
             {stats.map((s) => (
               <div key={s.label}>
                 <dt className="font-display text-2xl font-bold text-accent-bright sm:text-3xl">
-                  {s.value}
+                  <Counter value={s.value} />
                 </dt>
                 <dd className="mt-1 text-xs leading-snug text-white/60">{s.label}</dd>
               </div>
