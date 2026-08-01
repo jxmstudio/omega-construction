@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, site } from "@/lib/site";
+import { projects, site, SHOW_PROJECT_VALUES } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 
 type Params = { slug: string };
@@ -105,6 +105,22 @@ export default async function ProjectDetail({
                 {para}
               </p>
             ))}
+
+            {project.scope && project.scope.length > 0 && (
+              <>
+                <h2 className="mt-12 font-display text-2xl font-bold text-ink">
+                  Scope of project
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {project.scope.map((item) => (
+                    <li key={item} className="flex gap-3 text-slate">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
 
           <aside className="md:col-span-4">
@@ -122,6 +138,12 @@ export default async function ProjectDetail({
                   <div>
                     <dt className="text-mute">Architect</dt>
                     <dd className="font-semibold text-ink">{project.architect}</dd>
+                  </div>
+                )}
+                {SHOW_PROJECT_VALUES && project.value && (
+                  <div>
+                    <dt className="text-mute">Indicative value</dt>
+                    <dd className="font-semibold text-ink">{project.value}</dd>
                   </div>
                 )}
               </dl>

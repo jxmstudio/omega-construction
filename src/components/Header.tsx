@@ -15,7 +15,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5 text-xs">
           <span>Auckland-wide · Established {site.established}</span>
           <div className="flex items-center gap-5">
-            <span className="text-white/60">Site Safe certified · SiteWise accredited</span>
+            <span className="text-white/60">Site Safe member · Registered Master Builder</span>
             <a href={site.phoneHref} className="font-medium text-white hover:text-accent">
               {site.phone}
             </a>

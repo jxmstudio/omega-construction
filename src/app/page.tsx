@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { credentials, products, projects, services, site, stats } from "@/lib/site";
+import {
+  credentials,
+  products,
+  projects,
+  services,
+  site,
+  stats,
+  whyChooseUs,
+} from "@/lib/site";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import Reveal from "@/components/Reveal";
 
@@ -24,7 +32,7 @@ export default function Home() {
             Auckland · Established {site.established} · Registered Master Builder
           </span>
           <h1 className="animate-fade-up mt-6 max-w-3xl font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl md:text-6xl [animation-delay:80ms]">
-            Thirty years of proven construction across Auckland.
+            Thirty-five years of proven construction across Auckland.
           </h1>
           <p className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-white/75 [animation-delay:160ms]">
             Commercial and residential building, alterations and fit-outs —
@@ -89,9 +97,9 @@ export default function Home() {
             </p>
             <p className="mt-4 text-lg leading-relaxed text-slate">
               We back it with a comprehensive, end-to-end quality control process and
-              health &amp; safety systems — Site Safe membership, Site Smart management
-              and SiteWise accreditation — the credentials procurement teams look for,
-              at the centre of how we work.
+              health &amp; safety systems — Site Safe membership, Site Smart management,
+              and full licensing and insurance — the credentials procurement teams look
+              for, at the centre of how we work.
             </p>
             <Link
               href="/about"
@@ -168,6 +176,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───────── Why choose us ───────── */}
+      <section className="border-y border-line bg-sand">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+          <div className="max-w-2xl">
+            <SectionTag>Why choose us</SectionTag>
+            <h2 className="mt-4 font-display text-3xl font-bold text-ink md:text-4xl">
+              Built on quality, run with care
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whyChooseUs.map((w, i) => (
+              <Reveal key={w.title} delay={(i % 4) * 70} className="h-full">
+                <div className="flex h-full flex-col rounded-lg border border-line-2 bg-surface p-6">
+                  <span className="font-display text-sm font-bold text-accent">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-2 font-display text-lg font-bold text-ink">{w.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">{w.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ───────── Health & Safety ───────── */}
       <section className="bg-ink text-white">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-24">
@@ -179,8 +212,8 @@ export default function Home() {
             <p className="mt-5 max-w-lg leading-relaxed text-white/70">
               For commercial tenders, safety credentials decide who makes the shortlist.
               Omega is a Site Safe member running Site Smart cloud-based H&amp;S management,
-              which underpins our SiteWise accreditation — the proof procurement teams
-              need, front and centre.
+              backed by Master Builder registration and {site.publicLiability} public
+              liability insurance — the proof procurement teams need, front and centre.
             </p>
             <Link
               href="/health-safety"

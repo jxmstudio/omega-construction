@@ -5,9 +5,9 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Health & Safety | Site Safe & SiteWise Accredited Builder",
+  title: "Health & Safety | Site Safe Member & Master Builder",
   description:
-    "Omega Construction's health & safety credentials — Site Safe membership, Site Smart cloud-based H&S management and SiteWise accreditation, with full compliance to the Health and Safety at Work Act 2015.",
+    "Omega Construction's health & safety credentials — Site Safe membership, Site Smart cloud-based H&S management and $10 million public liability insurance, with full compliance to the Health and Safety at Work Act 2015.",
   alternates: { canonical: "/health-safety" },
 };
 
@@ -21,8 +21,8 @@ const systems = [
     body: "A cloud-based health & safety management system that creates a safer environment for everyone on our jobs — and provides hands-on H&S training to our employees and subcontractors while on site.",
   },
   {
-    name: "SiteWise accredited",
-    body: "SiteWise contractor prequalification — an independent grading of our health & safety systems that procurement teams and principals rely on.",
+    name: "SiteWise",
+    body: "We hold SiteWise contractor prequalification, an independent grading of our health & safety systems. Our reaccreditation is currently in progress.",
   },
 ];
 
@@ -75,6 +75,12 @@ export default function HealthSafetyPage() {
                 What this means for you is simple: our company is health &amp; safety
                 compliant, and can be trusted to work safely and to get your job done.
               </p>
+              <p className="mt-4 text-lg leading-relaxed text-slate">
+                We&apos;re also a Registered Master Builder (MBA #{site.mbaNumber}) and
+                Licensed Building Practitioner (LBP #{site.lbpNumber}), and we hold{" "}
+                {site.publicLiability} in public liability insurance — protecting you, your
+                family and our team.
+              </p>
             </div>
           </div>
         </div>
@@ -89,8 +95,8 @@ export default function HealthSafetyPage() {
               Tendering a project? Let&apos;s talk.
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-white/70">
-              A Site Safe–certified, SiteWise-accredited team you can put in front of any
-              procurement panel.
+              A Site Safe–certified, fully licensed and insured team you can put in front of
+              any procurement panel.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="rounded bg-accent px-6 py-3 font-semibold text-white hover:bg-accent-strong">

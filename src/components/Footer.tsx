@@ -16,8 +16,8 @@ export default function Footer() {
           />
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
             Auckland commercial and residential building contractor, established{" "}
-            {site.established}. Registered Master Builder, Site Safe certified and
-            SiteWise accredited.
+            {site.established}. Registered Master Builder, Site Safe member, fully
+            licensed and insured.
           </p>
         </div>
 

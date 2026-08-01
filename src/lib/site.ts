@@ -9,24 +9,38 @@ export const site = {
   name: "Omega Construction",
   legalName: "Omega Construction (Auckland) Ltd",
   established: 1994,
+  yearsExperience: 35,
   founder: "David Williams",
   founderCreds: "Registered Master Builder · Licensed Building Practitioner",
   domain: "omega-construction.co.nz",
   region: "Auckland",
+  tagline: "Quality Name, Quality Construction.",
+  taglineAlt: "Shaping buildings and homes with passion and skill.",
 
-  // Mobile / Dave — given in onboarding as the office + Dave contact.
+  // Mobile / Dave — confirmed as the primary contact.
   phone: "021 936 058",
   phoneHref: "tel:+6421936058",
-  // Office landline from existing site — verify still active.
   officePhone: "09 815 2117",
   officePhoneHref: "tel:+6498152117",
 
   email: "dave@omega-construction.co.nz",
   emailSusan: "susan@omega-construction.co.nz",
-  // Current address per Dave's onboarding.
-  address: "PO Box 56-320, Dominion Road, Auckland 1446",
+  // Confirmed by Dave.
+  address: "PO Box 56-320, Dominion Road, Mt Eden 1446",
+
+  // Credentials from Dave's 2026 Company Profile.
+  mbaNumber: "1951",
+  lbpNumber: "102450",
+  publicLiability: "$10 million",
+
   linkedin: "https://www.linkedin.com/company/omega-construction-auckland", // verify exact URL
 } as const;
+
+/**
+ * Price guides are supplied in Dave's profile but kept OUT of public pages by
+ * default (they anchor negotiations on bespoke work). Flip to true to show them.
+ */
+export const SHOW_PROJECT_VALUES = false;
 
 export const nav = [
   { label: "About", href: "/about" },
@@ -37,19 +51,88 @@ export const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-/** Trust signals — surfaced everywhere (they were buried on the old site). */
+/** Trust signals — all current & verifiable (SiteWise handled separately, see H&S). */
 export const credentials = [
-  { label: "Registered Master Builder", note: "David Williams · 30+ years" },
-  { label: "Licensed Building Practitioner", note: "LBP certified" },
+  { label: "Registered Master Builder", note: "MBA #1951" },
+  { label: "Licensed Building Practitioner", note: "LBP #102450" },
   { label: "Site Safe member", note: "Site Smart H&S system" },
-  { label: "SiteWise accredited", note: "Contractor prequalification" },
+  { label: "$10M insured", note: "Public liability cover" },
 ] as const;
 
+/** Headline stats from Dave's 2026 Company Profile. */
 export const stats = [
-  { value: "30+", label: "Years building in Auckland" },
-  { value: "1994", label: "Established" },
-  { value: "Master", label: "Registered Master Builder" },
-  { value: "Site Safe", label: "Certified & compliant" },
+  { value: "86", label: "Projects completed" },
+  { value: "82", label: "Satisfied customers" },
+  { value: "35", label: "Years of experience" },
+  { value: "0", label: "Reportable workplace accidents" },
+] as const;
+
+/** Our Values — from the Company Profile. */
+export const values = [
+  {
+    title: "Quality",
+    body: "Top-quality workmanship from skilled tradesmen, using only premium materials. We're a Registered Master Builder and Licensed Building Practitioner, insured and experienced in all types of construction in Auckland.",
+  },
+  {
+    title: "Price",
+    body: "We plan a project tailored to your family, your vision and your budget. No surprises, no hidden costs — just transparent, reliable service.",
+  },
+  {
+    title: "Protection",
+    body: "We take full responsibility for the quality of workmanship, tradespeople, materials and the final finish of your project.",
+  },
+  {
+    title: "Safety",
+    body: "We ensure the safety of homeowners and families with a qualified, experienced team trained in health and safety practices.",
+  },
+] as const;
+
+/** Our Process — six stages, from the Company Profile. */
+export const processSteps = [
+  {
+    title: "Approach",
+    body: "Contact Omega Construction, and David will take the time to understand your vision — no matter how big or small, simple or complex.",
+  },
+  {
+    title: "Research",
+    body: "David meets you on-site to assess the scope of work, take photos and consult with trusted trades and suppliers. Environment, budget and timeframes guide the next steps.",
+  },
+  {
+    title: "Acceptance",
+    body: "Within reasonable timing, David provides a detailed, obligation-free quote — valid for 30 days and usually covering all costs including materials, labour and GST.",
+  },
+  {
+    title: "Commencement",
+    body: "After acceptance, David sets a formal start date, ensuring it aligns with the expectations discussed in the initial stages.",
+  },
+  {
+    title: "Collaboration",
+    body: "We keep communication open throughout — weekly updates for larger jobs and regular check-ins for smaller projects.",
+  },
+  {
+    title: "Completion",
+    body: "On completion we conduct a formal handover, with any defects addressed and documented during the process.",
+  },
+] as const;
+
+/** Why Choose Us — from the Company Profile. */
+export const whyChooseUs = [
+  {
+    title: "Our team",
+    body: "Expertise, creativity and a keen eye for detail in every project — bringing your ideas to life with exceptional results.",
+  },
+  {
+    title: "Transparent communication",
+    body: "We keep you informed from start to finish, for complete peace of mind.",
+  },
+  {
+    title: "Project management",
+    body: "A refined project-management system ensures your project is completed quickly, without compromising on quality.",
+  },
+  {
+    title: "Speedy service",
+    body: "Efficient building processes mean speedy completion — again, without compromising on quality.",
+  },
 ] as const;
 
 export type Service = {
@@ -79,7 +162,7 @@ export const services: Service[] = [
       "Auckland commercial construction — single & multi-storey new builds, structural work, renovations and seismic upgrades. Site Safe certified, Registered Master Builder since 1994.",
     intro: [
       "Omega Construction has delivered commercial construction across Auckland for three decades — single and multi-storey structures, new builds, renovations and seismic upgrades for office, retail and mixed-use spaces.",
-      "For commercial clients comparing tenderers, our Site Safe membership, Site Smart H&S management and SiteWise accreditation aren't a footnote — they're the assurance your project runs safely, to programme and to code.",
+      "For commercial clients comparing tenderers, our Site Safe membership, Site Smart H&S management and full licensing and insurance aren't a footnote — they're the assurance your project runs safely, to programme and to code.",
     ],
     includes: [
       "New commercial builds, single and multi-storey",
@@ -212,89 +295,202 @@ export type Project = {
   summary: string;
   overview: string[];
   specification: string[];
+  scope?: string[];
+  /** Indicative value from Dave's profile — hidden unless SHOW_PROJECT_VALUES. */
+  value?: string;
+  hasVideo?: boolean;
   metaTitle: string;
   metaDescription: string;
 };
 
-/** Real flagship case studies recovered from the existing site. */
+/** Flagship case studies — merged from Dave's 2026 profile + the existing site. */
 export const projects: Project[] = [
   {
     slug: "urban-oasis-ponsonby",
     title: "Urban Oasis",
     category: "Residential",
-    location: "78 Lincoln Street, Ponsonby",
+    location: "Lincoln Street, Ponsonby",
     architect: "Koia Architects",
     summary:
-      "Award-winning architectural reclad and refurbishment — internal walls removed and replaced with structural steel for full open-plan living, fully automated with the highest-quality fittings.",
+      "An alteration and reclad that grew into a full structural rebuild — bespoke joinery, Caesarstone and all-new flooring, elevating the heart of the home.",
     overview: [
-      "This architecturally remodelled home was extensively reclad and refurbished using a palette of quality materials and excellence in construction detail to give cohesion to the whole. A glazed entrance gallery serves three downstairs bedrooms, with sliders offering the first connection to outdoor living.",
-      "Upstairs is devoted to open-plan living with easy flow to generous alfresco living, including a built-in barbecue. The kitchen is a custom-designed showpiece, its bespoke island bench borrowing material from the feature front door, and the design culminates in a glazed office mezzanine nestled into the home's apex, skewered by a black steel beam.",
+      "This project blends luxury and functionality, creating a timeless space that's as beautiful as it is practical. What began as an alteration and reclad turned into a full refurbishment — a complete structural upgrade with both exterior and internal rebuild.",
+      "Custom joinery runs throughout with Caesarstone and all-new flooring, elevating the heart of the home with bespoke craftsmanship. Elaborate detail inside and out required genuinely skilled workmanship, and the home is futureproofed with smart wiring throughout.",
     ],
     specification: [
-      "A high-quality-detail build where no expense was spared. Omega Construction removed all of the internal walls and strengthened the home with structural steel beams to create a large open-plan living space that extends the length of the structure.",
-      "Only the highest-quality fittings were used and the home is fully automated, with extensive use of louvres to direct natural light — resulting in a phenomenal, award-winning refurbishment.",
+      "Omega Construction removed all of the internal walls and strengthened the home with structural steel beams to create a large open-plan living space that extends the length of the structure.",
+      "Only the highest-quality fittings were used and the home is fully automated, with extensive use of louvres to direct natural light — a high-quality-detail build where no expense was spared.",
     ],
-    metaTitle: "Urban Oasis, Ponsonby | Architectural Home Remodel",
+    scope: [
+      "Alteration to full refurbishment and structural upgrade",
+      "Exterior and internal rebuild",
+      "Custom joinery with Caesarstone and all-new flooring",
+      "Futureproofed with smart wiring throughout",
+    ],
+    value: "$900,000",
+    metaTitle: "Urban Oasis, Ponsonby | Architectural Home Rebuild",
     metaDescription:
-      "Award-winning architectural reclad and refurbishment in Ponsonby, Auckland — structural steel, open-plan living and full home automation by Omega Construction.",
+      "A Lincoln Street, Ponsonby alteration and reclad that became a full structural rebuild — bespoke joinery, Caesarstone, smart wiring and open-plan living by Omega Construction.",
+  },
+  {
+    slug: "andrew-baxter-drive",
+    title: "Andrew Baxter Drive",
+    category: "Commercial",
+    location: "Māngere, near Auckland Airport",
+    summary:
+      "An old office and warehouse transformed into a vibrant workspace for a multinational tenant — new canopy, two-hour firewalls and full interior upgrade.",
+    overview: [
+      "We transformed this old office and warehouse structure into a vibrant workspace for a multinational tenant, located in an established commercial area close to Auckland International Airport.",
+      "The office upgrade included new bathroom blocks on both levels, new staffroom and kitchen spaces, and new exterior windows, ceilings and flooring to finish the spaces — along with a new external canopy structure and firewall requirements.",
+    ],
+    specification: [
+      "A new cantilevered exterior canopy was installed, and new two-hour exterior firewalls were built to meet the higher internal fire-rating requirements of the raking structure.",
+    ],
+    scope: [
+      "Commercial refurbishment and building upgrade",
+      "New cantilevered exterior canopy",
+      "New two-hour exterior firewalls",
+      "New bathrooms, staffroom, kitchen, windows, ceilings and flooring",
+    ],
+    value: "$1.2 million",
+    hasVideo: true,
+    metaTitle: "Andrew Baxter Drive | Commercial Refurbishment Auckland",
+    metaDescription:
+      "An office and warehouse near Auckland Airport transformed into a vibrant workspace for a multinational tenant — cantilevered canopy, two-hour firewalls and full fit-out.",
   },
   {
     slug: "south-pacific-pictures",
     title: "South Pacific Pictures",
     category: "Commercial",
     location: "8 Tolich Place, Auckland",
+    architect: "Team Avery",
     summary:
-      "A new open-plan administration floor built above live ground-floor offices, with a bespoke steel staircase — delivered around an operating film set and busy studio.",
+      "A 400 m² open-plan administration floor built above an operating studio — a bright new space with exterior decks, delivered around a live production.",
     overview: [
-      "As a result of business expansion, South Pacific Pictures wanted to create a brand-new open-plan administration workspace on a new level above its original existing ground-floor offices.",
-      "The modest entrance was professionally reconstructed to create a spacious feel to the reception area. A grand staircase — steel stringers holding concrete landings and treads in place — leads up to the new first-floor administration area, where large windows, sliding joinery and a roof deck at the rear transport the outside in.",
+      "South Pacific Pictures had outgrown their administration area and required new office space. SPP worked closely with Team Avery on the creation of this bright new open space, with exterior decks to enjoy on a sunny day.",
+      "The result is a 400 m² space that blends functionality and style seamlessly with the other production offices and filming studios throughout the complex — reached via a new entrance and reception area.",
     ],
     specification: [
-      "The challenge for Omega Construction was to complete the project while working around a live film set and busy administration office. Production was located on the main level while the studio was directly adjacent, with filming continuing throughout the build.",
+      "The challenge was to complete the project while working around a live film set and busy administration office. Production continued on the main level, with the studio directly adjacent, throughout the build.",
     ],
-    metaTitle: "South Pacific Pictures | Commercial Fit-Out Auckland",
+    scope: [
+      "400 m² new administration offices above an existing working building",
+      "New entrance and reception space",
+      "Exterior decks",
+      "Delivered around a live production",
+    ],
+    value: "$1.4 million",
+    metaTitle: "South Pacific Pictures | Commercial Office Build Auckland",
     metaDescription:
-      "A new open-plan administration floor with a bespoke steel staircase, built above live ground-floor offices at South Pacific Pictures — delivered around an operating film set.",
+      "A 400 m² open-plan administration floor with exterior decks, built above an operating studio at South Pacific Pictures with Team Avery — delivered around a live production.",
   },
   {
     slug: "the-sentinel-takapuna",
-    title: "The Sentinel",
+    title: "Sentinel Tower",
     category: "Commercial",
-    location: "3–9 Northcroft Street, Takapuna",
-    architect: "Avery Team Architects",
+    location: "Takapuna, Auckland",
     summary:
-      "Transformed the level-4 communal area of a 30-storey residential tower with sheltered spaces and structural glass wind barriers around the 25m heated swimming pool.",
+      "A fourth-floor pool and exterior-living upgrade for the Sentinel Tower apartments — prefinished structural steel shelters and glass wind breaks, four levels up.",
     overview: [
-      "The Sentinel Tower is a luxury residential skyscraper located on Auckland's North Shore. Omega Construction was tasked with transforming the outdoor communal area into a more practical and user-friendly environment.",
-      "The result was the creation of enjoyable, sheltered spaces throughout the communal area and protective glass wind barriers surrounding the swimming pool.",
+      "Located in Takapuna, the Sentinel Tower apartments' exterior living space was upgraded for the enjoyment of the apartment owners. The work created four separate covered spaces for relaxing or entertaining, made from offsite prefabricated, prefinished structural steel members and onsite carpentry construction.",
+      "New glass-wall edging was installed to protect the space from wind, four levels up.",
     ],
     specification: [
-      "The communal area sits on level 4 of the 30-storey tower, open to the elements and prone to gale-force winds that previously made the space unpleasant and unusable at times.",
-      "Omega upgraded the structure and replaced the glass surrounding the 25m x 6m heated swimming pool, architecturally securing the 2.2m-high glass screens to reinforced concrete panels.",
+      "The fourth-floor communal area was open to the elements and prone to gale-force winds that made it unusable at times.",
+      "Omega upgraded the structure and installed glass-panel wind breaks around the pool edging, with the sheltered structures built from prefinished structural steel.",
     ],
-    metaTitle: "The Sentinel, Takapuna | Structural Glass & Communal Upgrade",
+    scope: [
+      "Fourth-floor pool and exterior living upgrade",
+      "Exterior resting and entertaining shelters for owners",
+      "Glass-panel wind breaks around the pool edging",
+      "Prefinished, prefabricated structural steel",
+    ],
+    value: "$350,000",
+    metaTitle: "Sentinel Tower, Takapuna | Exterior Living Upgrade",
     metaDescription:
-      "Transforming the level-4 communal area of a 30-storey Takapuna tower — sheltered spaces and structural glass wind barriers around a 25m heated pool, by Omega Construction.",
+      "A fourth-floor pool and exterior-living upgrade at Takapuna's Sentinel Tower — prefinished structural-steel shelters and glass wind breaks by Omega Construction.",
+  },
+  {
+    slug: "owens-road-epsom",
+    title: "Owens Road",
+    category: "Residential",
+    location: "Epsom, Auckland",
+    summary:
+      "An extensive renovation of an altered single-level home — structural upgrade of the lower level, a new deck and carport, and a reconfigured interior opening to outdoor living.",
+    overview: [
+      "Originally a single-level home that had been altered with various basement developments and extensions. Investigation on-site found a number of flaws to the exterior walls, and the basement floor was sitting directly on the ground.",
+      "This extensive renovation now offers a seamless open space, with bifold doors and a large deck for outdoor living.",
+    ],
+    specification: [
+      "Omega carried out a structural upgrade of the lower-level exterior walls and foundations, and added a new exterior deck with a semi-enclosed double carport below.",
+      "The interior was reconfigured and upgraded throughout — kitchen, dining, bathrooms, bedroom and internal stairs.",
+    ],
+    scope: [
+      "Structural upgrade of lower-level exterior walls and foundations",
+      "New exterior deck with semi-enclosed double carport below",
+      "Reconfigured kitchen, dining, bathrooms, bedroom and internal stairs",
+      "Bifold doors opening to a large deck",
+    ],
+    value: "$900,000",
+    metaTitle: "Owens Road, Epsom | Home Renovation & Structural Upgrade",
+    metaDescription:
+      "An extensive Epsom renovation — structural upgrade of the lower level, a new deck and double carport, and a fully reconfigured interior opening to outdoor living.",
   },
   {
     slug: "patey-street",
     title: "Patey Street",
     category: "Residential",
-    location: "8 & 8A Patey Street, Auckland",
+    location: "Epsom, Auckland",
     architect: "Malcolm Walker Architects",
     summary:
-      "Two solid concrete, two-storey homes on a compact 660m² site — modern in style yet designed to sit within an established street, built to last the test of time.",
+      "Two new luxurious concrete townhouses in Epsom — four bedrooms, a curved internal stairwell and double internal garaging, built to the highest standard.",
     overview: [
-      "This development was the result of a simple brief from the owner to the architect: maximise the site with homes that are of high quality, that look good but are practical to live in.",
-      "The original home on the property was a big part of the family history, so it was important to the owner that it remained intact. The home was sold to a building-removals specialist and in 2015 was relocated to a small town in the Waikato, where it remains today.",
+      "Located in Epsom, we constructed a luxurious two-storey duplex which includes double garaging for both homes. This premium build offers spacious rooms and versatile living areas across multiple floors, meeting the highest standards of comfort and style.",
+      "The original home on the property was a big part of the family history, so it was important to the owner that it remained intact. It was sold to a building-removals specialist and in 2015 relocated to a small town in the Waikato, where it remains today.",
     ],
     specification: [
-      "These two, two-storey homes were constructed on a site measuring only 660m² overall. The structure of the homes is solid concrete, including all walls and floors.",
-      "While a modern style, they fit effectively into the existing established street format. These solid homes were successfully completed to specification and will last the test of time.",
+      "Two new townhouses of solid concrete construction, including floors and walls, were built on the site.",
+      "Each home features four bedrooms, 2.5 bathrooms, a double internal garage and a curved internal stairwell, finished with quality fittings and appliances.",
     ],
-    metaTitle: "Patey Street | Solid Concrete Homes Auckland",
+    scope: [
+      "Two new concrete townhouses (floors and walls)",
+      "Four bedrooms, 2.5 bathrooms, double internal garage",
+      "Curved internal stairwell",
+      "Quality fittings and appliances",
+    ],
+    value: "$2.4 million",
+    metaTitle: "Patey Street, Epsom | Concrete Townhouses Auckland",
     metaDescription:
-      "Two solid concrete, two-storey homes on a compact 660m² Auckland site — modern yet in keeping with an established street, built by Omega Construction.",
+      "Two luxurious concrete townhouses in Epsom — four bedrooms, curved internal stairwell and double garaging, built to the highest standard by Omega Construction.",
+  },
+];
+
+/** Recent projects Dave supplied photos for — shown as a range strip until full write-ups arrive. */
+export type RecentProject = {
+  title: string;
+  tag: string;
+  location: string;
+  brief: string;
+};
+
+export const recentProjects: RecentProject[] = [
+  {
+    title: "Mercure Hotel — Stage One",
+    tag: "Commercial",
+    location: "500 Queen Street, Auckland",
+    brief: "Stage-one construction works at the Mercure Hotel on Queen Street.",
+  },
+  {
+    title: "Warkworth Water Pump Station",
+    tag: "Infrastructure",
+    location: "Warkworth · for Watercare",
+    brief: "A water pump station built for Watercare in Warkworth.",
+  },
+  {
+    title: "Sarsfield Road",
+    tag: "Residential",
+    location: "St Marys Bay, Auckland",
+    brief: "An entrance project at Sarsfield Road, St Marys Bay.",
   },
 ];
 

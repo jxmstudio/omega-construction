@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { projects, site } from "@/lib/site";
+import { projects, recentProjects, site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import ProjectsExplorer from "@/components/ProjectsExplorer";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Projects & Case Studies — Commercial & Residential Auckland",
@@ -22,6 +23,37 @@ export default function ProjectsPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
         <ProjectsExplorer projects={projects} />
+      </section>
+
+      {/* recent work — range of building types */}
+      <section className="border-t border-line bg-sand">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-2xl font-bold text-ink md:text-3xl">
+              More recent work
+            </h2>
+            <p className="mt-3 text-slate">
+              A sense of the range we build across, from hospitality to infrastructure. Full
+              case studies coming soon.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {recentProjects.map((p, i) => (
+              <Reveal key={p.title} delay={(i % 3) * 80} className="h-full">
+                <div className="flex h-full flex-col rounded-lg border border-line bg-surface p-6">
+                  <span className="w-fit rounded-full bg-accent-tint px-3 py-1 text-xs font-semibold text-accent-strong">
+                    {p.tag}
+                  </span>
+                  <h3 className="mt-3 font-display text-lg font-bold text-ink">{p.title}</h3>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-mute">
+                    {p.location}
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate">{p.brief}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
