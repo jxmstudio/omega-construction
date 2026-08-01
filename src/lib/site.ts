@@ -299,6 +299,9 @@ export type Project = {
   /** Indicative value from Dave's profile — hidden unless SHOW_PROJECT_VALUES. */
   value?: string;
   hasVideo?: boolean;
+  /** Real photography (from Dave's profile). Paths under /public. */
+  hero: string;
+  gallery: string[];
   metaTitle: string;
   metaDescription: string;
 };
@@ -328,6 +331,12 @@ export const projects: Project[] = [
       "Futureproofed with smart wiring throughout",
     ],
     value: "$900,000",
+    hero: "/projects/urban-oasis-ponsonby/hero.jpg",
+    gallery: [
+      "/projects/urban-oasis-ponsonby/1.jpg",
+      "/projects/urban-oasis-ponsonby/2.jpg",
+      "/projects/urban-oasis-ponsonby/3.jpg",
+    ],
     metaTitle: "Urban Oasis, Ponsonby | Architectural Home Rebuild",
     metaDescription:
       "A Lincoln Street, Ponsonby alteration and reclad that became a full structural rebuild — bespoke joinery, Caesarstone, smart wiring and open-plan living by Omega Construction.",
@@ -354,6 +363,12 @@ export const projects: Project[] = [
     ],
     value: "$1.2 million",
     hasVideo: true,
+    hero: "/projects/andrew-baxter-drive/hero.jpg",
+    gallery: [
+      "/projects/andrew-baxter-drive/1.jpg",
+      "/projects/andrew-baxter-drive/2.jpg",
+      "/projects/andrew-baxter-drive/3.jpg",
+    ],
     metaTitle: "Andrew Baxter Drive | Commercial Refurbishment Auckland",
     metaDescription:
       "An office and warehouse near Auckland Airport transformed into a vibrant workspace for a multinational tenant — cantilevered canopy, two-hour firewalls and full fit-out.",
@@ -380,6 +395,12 @@ export const projects: Project[] = [
       "Delivered around a live production",
     ],
     value: "$1.4 million",
+    hero: "/projects/south-pacific-pictures/hero.jpg",
+    gallery: [
+      "/projects/south-pacific-pictures/1.jpg",
+      "/projects/south-pacific-pictures/2.jpg",
+      "/projects/south-pacific-pictures/3.jpg",
+    ],
     metaTitle: "South Pacific Pictures | Commercial Office Build Auckland",
     metaDescription:
       "A 400 m² open-plan administration floor with exterior decks, built above an operating studio at South Pacific Pictures with Team Avery — delivered around a live production.",
@@ -406,6 +427,12 @@ export const projects: Project[] = [
       "Prefinished, prefabricated structural steel",
     ],
     value: "$350,000",
+    hero: "/projects/the-sentinel-takapuna/hero.jpg",
+    gallery: [
+      "/projects/the-sentinel-takapuna/1.jpg",
+      "/projects/the-sentinel-takapuna/2.jpg",
+      "/projects/the-sentinel-takapuna/3.jpg",
+    ],
     metaTitle: "Sentinel Tower, Takapuna | Exterior Living Upgrade",
     metaDescription:
       "A fourth-floor pool and exterior-living upgrade at Takapuna's Sentinel Tower — prefinished structural-steel shelters and glass wind breaks by Omega Construction.",
@@ -432,6 +459,12 @@ export const projects: Project[] = [
       "Bifold doors opening to a large deck",
     ],
     value: "$900,000",
+    hero: "/projects/owens-road-epsom/hero.jpg",
+    gallery: [
+      "/projects/owens-road-epsom/1.jpg",
+      "/projects/owens-road-epsom/2.jpg",
+      "/projects/owens-road-epsom/3.jpg",
+    ],
     metaTitle: "Owens Road, Epsom | Home Renovation & Structural Upgrade",
     metaDescription:
       "An extensive Epsom renovation — structural upgrade of the lower level, a new deck and double carport, and a fully reconfigured interior opening to outdoor living.",
@@ -459,6 +492,12 @@ export const projects: Project[] = [
       "Quality fittings and appliances",
     ],
     value: "$2.4 million",
+    hero: "/projects/patey-street/hero.jpg",
+    gallery: [
+      "/projects/patey-street/1.jpg",
+      "/projects/patey-street/2.jpg",
+      "/projects/patey-street/3.jpg",
+    ],
     metaTitle: "Patey Street, Epsom | Concrete Townhouses Auckland",
     metaDescription:
       "Two luxurious concrete townhouses in Epsom — four bedrooms, curved internal stairwell and double garaging, built to the highest standard by Omega Construction.",

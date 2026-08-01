@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import type { Project } from "@/lib/site";
 
@@ -39,12 +40,14 @@ export default function ProjectsExplorer({ projects }: { projects: Project[] }) 
             href={`/projects/${p.slug}`}
             className="group overflow-hidden rounded-lg border border-line bg-surface transition-shadow hover:shadow-lg"
           >
-            {/* image placeholder — swap for real project photography */}
-            <div className="relative flex aspect-[16/10] items-center justify-center bg-ink-2 text-white/30">
-              <div className="bg-grid absolute inset-0 opacity-40" />
-              <span className="relative font-display text-sm uppercase tracking-wider">
-                Project image
-              </span>
+            <div className="relative aspect-[16/10] overflow-hidden bg-ink-2">
+              <Image
+                src={p.hero}
+                alt={p.title}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
               <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
                 {p.category}
               </span>

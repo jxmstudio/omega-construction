@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, site, SHOW_PROJECT_VALUES } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
@@ -76,13 +77,17 @@ export default async function ProjectDetail({
         </div>
       </PageHeader>
 
-      {/* hero image placeholder */}
+      {/* hero image */}
       <div className="mx-auto max-w-7xl px-6">
-        <div className="relative -mt-8 flex aspect-[21/9] items-center justify-center overflow-hidden rounded-2xl border border-line bg-ink-2 text-white/30 shadow-lg">
-          <div className="bg-grid absolute inset-0 opacity-40" />
-          <span className="relative font-display text-sm uppercase tracking-wider">
-            Project photography
-          </span>
+        <div className="relative -mt-8 aspect-[21/9] overflow-hidden rounded-2xl border border-line bg-ink-2 shadow-lg">
+          <Image
+            src={project.hero}
+            alt={project.title}
+            fill
+            priority
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="object-cover"
+          />
         </div>
       </div>
 
@@ -158,6 +163,30 @@ export default async function ProjectDetail({
         </div>
       </section>
 
+      {/* gallery */}
+      {project.gallery.length > 0 && (
+        <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-20">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {project.gallery.map((src, i) => (
+              <div
+                key={src}
+                className={`relative overflow-hidden rounded-xl border border-line bg-ink-2 ${
+                  i === 0 ? "aspect-[4/3] sm:col-span-2 sm:aspect-[16/9]" : "aspect-[4/3]"
+                }`}
+              >
+                <Image
+                  src={src}
+                  alt={`${project.title} — photo ${i + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* more projects */}
       <section className="border-t border-line bg-sand">
         <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
@@ -176,11 +205,14 @@ export default async function ProjectDetail({
                 href={`/projects/${p.slug}`}
                 className="group overflow-hidden rounded-lg border border-line bg-surface"
               >
-                <div className="relative flex aspect-[16/9] items-center justify-center bg-ink-2 text-white/30">
-                  <div className="bg-grid absolute inset-0 opacity-40" />
-                  <span className="relative font-display text-xs uppercase tracking-wider">
-                    Project image
-                  </span>
+                <div className="relative aspect-[16/9] overflow-hidden bg-ink-2">
+                  <Image
+                    src={p.hero}
+                    alt={p.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-5">
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent">

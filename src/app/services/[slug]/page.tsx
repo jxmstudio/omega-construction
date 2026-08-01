@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, services, site } from "@/lib/site";
 import Reveal from "@/components/Reveal";
@@ -181,11 +182,14 @@ export default async function ServiceDetail({
                     href={`/projects/${p.slug}`}
                     className="group block overflow-hidden rounded-lg border border-line bg-surface"
                   >
-                    <div className="relative flex aspect-[4/3] items-center justify-center bg-ink-2 text-white/30">
-                      <div className="bg-grid absolute inset-0 opacity-40" />
-                      <span className="relative font-display text-sm uppercase tracking-wider">
-                        Project image
-                      </span>
+                    <div className="relative aspect-[4/3] overflow-hidden bg-ink-2">
+                      <Image
+                        src={p.hero}
+                        alt={p.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
                     <div className="p-5">
                       <span className="text-xs font-semibold uppercase tracking-wider text-accent">

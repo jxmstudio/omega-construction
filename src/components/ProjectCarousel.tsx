@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Project } from "@/lib/site";
 
@@ -49,17 +50,17 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
             className="relative flex min-h-[440px] min-w-full flex-col justify-end overflow-hidden md:min-h-[520px]"
             aria-hidden={i !== index}
           >
-            {/* backdrop — swap this block for a real <Image> when photos land */}
+            {/* backdrop — real project photography */}
             <div className="absolute inset-0 bg-ink-2">
-              <div className="bg-grid absolute inset-0 opacity-60" />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(70% 60% at 75% 15%, color-mix(in srgb, var(--color-accent) 45%, transparent), transparent 70%)",
-                }}
+              <Image
+                src={p.hero}
+                alt={p.title}
+                fill
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                priority={i === 0}
+                className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/25" />
             </div>
 
             <div className="relative z-10 max-w-2xl p-8 md:p-12">

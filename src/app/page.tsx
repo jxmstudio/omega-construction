@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   credentials,
   products,
@@ -18,6 +19,15 @@ export default function Home() {
 
       {/* ───────── Hero ───────── */}
       <section className="relative overflow-hidden bg-ink text-white">
+        <Image
+          src="/brand/home-hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/50" />
         <div className="bg-grid absolute inset-0 opacity-70" />
         <div
           className="absolute inset-y-0 right-0 w-1/2 opacity-[0.15]"
