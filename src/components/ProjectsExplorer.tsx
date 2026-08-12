@@ -66,9 +66,9 @@ export default function ProjectsExplorer({ projects }: { projects: Project[] }) 
               <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate">
                 {p.summary}
               </p>
-              {p.architect && (
+              {p.partner && (
                 <p className="mt-3 text-xs uppercase tracking-wider text-mute">
-                  Architect · {p.architect}
+                  Partner · {p.partner}
                 </p>
               )}
               <span className="mt-4 inline-block text-sm font-semibold text-accent group-hover:text-accent-strong">

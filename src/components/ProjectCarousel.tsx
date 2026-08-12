@@ -74,9 +74,9 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
               </h3>
               <p className="mt-1 text-sm font-medium text-white/60">{p.location}</p>
               <p className="mt-4 max-w-xl leading-relaxed text-white/80">{p.summary}</p>
-              {p.architect && (
+              {p.partner && (
                 <p className="mt-3 text-xs uppercase tracking-wider text-white/45">
-                  Architect · {p.architect}
+                  Partner · {p.partner}
                 </p>
               )}
               <Link

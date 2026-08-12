@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { products, site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
@@ -65,6 +66,21 @@ export default async function ProductDetail({
         title={product.name}
         intro={product.tagline}
       />
+
+      {product.image && (
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="relative -mt-8 aspect-[21/9] overflow-hidden rounded-2xl border border-line bg-ink-2 shadow-lg">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              priority
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      )}
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">

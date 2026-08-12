@@ -69,10 +69,10 @@ export default async function ProjectDetail({
             {project.category}
           </span>
           <span>{project.location}</span>
-          {project.architect && (
+          {(project.partnerFull ?? project.partner) && (
             <>
               <span className="text-white/30">·</span>
-              <span>Architect: {project.architect}</span>
+              <span>Partner: {project.partnerFull ?? project.partner}</span>
             </>
           )}
         </div>
@@ -140,10 +140,12 @@ export default async function ProjectDetail({
                   <dt className="text-mute">Location</dt>
                   <dd className="font-semibold text-ink">{project.location}</dd>
                 </div>
-                {project.architect && (
+                {(project.partnerFull ?? project.partner) && (
                   <div>
-                    <dt className="text-mute">Architect</dt>
-                    <dd className="font-semibold text-ink">{project.architect}</dd>
+                    <dt className="text-mute">Partner</dt>
+                    <dd className="font-semibold text-ink">
+                      {project.partnerFull ?? project.partner}
+                    </dd>
                   </div>
                 )}
                 {SHOW_PROJECT_VALUES && project.value && (

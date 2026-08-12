@@ -57,7 +57,7 @@ export default function AboutPage() {
               Our well-established professional affiliations mean we can get the job done
               right. We add value to your project, protect your interests and save you time
               and money wherever possible — and we&apos;re proud to be a Registered Master
-              Builder.
+              Builder for 35 years.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

@@ -121,10 +121,11 @@ export default function ContactForm() {
           </label>
           <select id="budget" name="budget" defaultValue="" className={inputBase}>
             <option value="">Not sure yet</option>
-            <option>Under $50k</option>
-            <option>$50k – $150k</option>
-            <option>$150k – $500k</option>
-            <option>$500k+</option>
+            <option>Under $50K</option>
+            <option>$50K+</option>
+            <option>$250K+</option>
+            <option>$500K+</option>
+            <option>$1 Million+</option>
           </select>
         </div>
       </div>

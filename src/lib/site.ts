@@ -75,7 +75,7 @@ export const values = [
   },
   {
     title: "Price",
-    body: "We plan a project tailored to your family, your vision and your budget. No surprises, no hidden costs — just transparent, reliable service.",
+    body: "We plan a project tailored to your vision and your budget. No surprises, no hidden costs — just transparent, reliable service.",
   },
   {
     title: "Protection",
@@ -91,7 +91,7 @@ export const values = [
 export const processSteps = [
   {
     title: "Approach",
-    body: "Contact Omega Construction, and David will take the time to understand your vision — no matter how big or small, simple or complex.",
+    body: "Contact Omega Construction, and David will take the time to understand your vision — no matter how simple or complex.",
   },
   {
     title: "Research",
@@ -99,7 +99,7 @@ export const processSteps = [
   },
   {
     title: "Acceptance",
-    body: "Within reasonable timing, David provides a detailed, obligation-free quote — valid for 30 days and usually covering all costs including materials, labour and GST.",
+    body: "Within reasonable timing, David provides a detailed, obligation-free quote — valid for 30 days and usually covering all costs including materials, labour and GST (T&C Apply).",
   },
   {
     title: "Commencement",
@@ -156,12 +156,12 @@ export const services: Service[] = [
     short: "Single & multi-storey structural work, new builds and renovations.",
     description:
       "Single and multi-storey structure, new builds and renovations delivered to programme, with the health & safety systems commercial tenders demand — including seismic upgrading.",
-    sectors: ["Office", "Retail", "Mixed-use", "Seismic upgrades"],
+    sectors: ["Office", "Retail", "Mixed-use", "Warehouse", "Seismic upgrades"],
     metaTitle: "Commercial Builder Auckland | Commercial Construction",
     metaDescription:
       "Auckland commercial construction — single & multi-storey new builds, structural work, renovations and seismic upgrades. Site Safe certified, Registered Master Builder since 1994.",
     intro: [
-      "Omega Construction has delivered commercial construction across Auckland for three decades — single and multi-storey structures, new builds, renovations and seismic upgrades for office, retail and mixed-use spaces.",
+      "Omega Construction has delivered commercial construction across Auckland for three decades — single and multi-storey structures, new builds and renovations for office, retail and mixed-use spaces, and Seismic Upgrades.",
       "For commercial clients comparing tenderers, our Site Safe membership, Site Smart H&S management and full licensing and insurance aren't a footnote — they're the assurance your project runs safely, to programme and to code.",
     ],
     includes: [
@@ -184,7 +184,7 @@ export const services: Service[] = [
     metaDescription:
       "Upper-end Auckland home building and renovation — new homes, architectural remodels, recladding, extensions and refurbishment. Registered Master Builder, award-winning work.",
     intro: [
-      "From architecturally remodelled homes to new builds and multiple dwellings, Omega Construction brings a high-quality-detail approach to upper-end Auckland residential — work that has earned award-winning recognition.",
+      "From architecturally remodelled homes to new builds and multiple dwellings, Omega Construction brings a high-quality-detail approach to Auckland residential — work that has earned award-winning recognition.",
       "We remove internal walls and strengthen with structural steel, reclad and refurbish, and finish with only the highest-quality fittings — working alongside your architect to realise the design.",
     ],
     includes: [
@@ -192,7 +192,7 @@ export const services: Service[] = [
       "Architectural remodels and open-plan conversions",
       "Recladding and weathertightness remediation",
       "Extensions, alterations and full refurbishment",
-      "Structural steel and high-detail finishing",
+      "High-detail finishing",
     ],
     relatedCategory: "Residential",
   },
@@ -231,13 +231,13 @@ export const services: Service[] = [
       "Auckland building alterations, extensions, structural work and maintenance — residential and commercial. Registered Master Builder, Licensed Building Practitioner since 1994.",
     intro: [
       "You name it, we can build it. Omega Construction handles alterations, extensions, structural work and maintenance across residential and commercial buildings.",
-      "Backed by a Licensed Building Practitioner and 30+ years of experience, we take on the structural challenges other builders pass on — with the engineering and compliance handled end to end.",
+      "Backed by a Licensed Building Practitioner and 35+ years of experience, we take on the challenges other builders pass on — with all required compliance handled end to end.",
     ],
     includes: [
-      "Structural alterations and reconfiguration",
       "Extensions and additions",
-      "Structural steel and strengthening",
+      "Structural alterations and reconfiguration",
       "Ongoing building maintenance",
+      "Seismic Strengthening",
       "Engineering and consent coordination",
     ],
   },
@@ -291,7 +291,10 @@ export type Project = {
   title: string;
   category: "Commercial" | "Residential";
   location: string;
-  architect?: string;
+  /** Design/partner firm credit (architect, developer or property manager). */
+  partner?: string;
+  /** Fuller credit shown on the detail page when it differs from the card. */
+  partnerFull?: string;
   summary: string;
   overview: string[];
   specification: string[];
@@ -313,7 +316,7 @@ export const projects: Project[] = [
     title: "Urban Oasis",
     category: "Residential",
     location: "Lincoln Street, Ponsonby",
-    architect: "Koia Architects",
+    partner: "KOIA Architects",
     summary:
       "An alteration and reclad that grew into a full structural rebuild — bespoke joinery, Caesarstone and all-new flooring, elevating the heart of the home.",
     overview: [
@@ -334,8 +337,8 @@ export const projects: Project[] = [
     hero: "/projects/urban-oasis-ponsonby/hero.jpg",
     gallery: [
       "/projects/urban-oasis-ponsonby/1.jpg",
-      "/projects/urban-oasis-ponsonby/2.jpg",
-      "/projects/urban-oasis-ponsonby/3.jpg",
+      "/projects/urban-oasis-ponsonby/front-of-house.jpg",
+      "/projects/urban-oasis-ponsonby/master-bathroom.jpg",
     ],
     metaTitle: "Urban Oasis, Ponsonby | Architectural Home Rebuild",
     metaDescription:
@@ -346,6 +349,7 @@ export const projects: Project[] = [
     title: "Andrew Baxter Drive",
     category: "Commercial",
     location: "Māngere, near Auckland Airport",
+    partner: "Integral Property Management",
     summary:
       "An old office and warehouse transformed into a vibrant workspace for a multinational tenant — new canopy, two-hour firewalls and full interior upgrade.",
     overview: [
@@ -378,15 +382,16 @@ export const projects: Project[] = [
     title: "South Pacific Pictures",
     category: "Commercial",
     location: "8 Tolich Place, Auckland",
-    architect: "Team Avery",
+    partner: "John Barnett",
+    partnerFull: "John Barnett + Team Avery",
     summary:
       "A 400 m² open-plan administration floor built above an operating studio — a bright new space with exterior decks, delivered around a live production.",
     overview: [
       "South Pacific Pictures had outgrown their administration area and required new office space. SPP worked closely with Team Avery on the creation of this bright new open space, with exterior decks to enjoy on a sunny day.",
-      "The result is a 400 m² space that blends functionality and style seamlessly with the other production offices and filming studios throughout the complex — reached via a new entrance and reception area.",
+      "The result is a 400 m² space that blends functionality and style seamlessly with the other production offices and filming studios throughout the complex and creating a new entrance and reception area.",
     ],
     specification: [
-      "The challenge was to complete the project while working around a live film set and busy administration office. Production continued on the main level, with the studio directly adjacent, throughout the build.",
+      "The challenge was to complete the project while working around a live film set and busy production office. Production continued on the main level, with the studio directly adjacent, throughout the build.",
     ],
     scope: [
       "400 m² new administration offices above an existing working building",
@@ -410,6 +415,7 @@ export const projects: Project[] = [
     title: "Sentinel Tower",
     category: "Commercial",
     location: "Takapuna, Auckland",
+    partner: "Team Avery Architects",
     summary:
       "A fourth-floor pool and exterior-living upgrade for the Sentinel Tower apartments — prefinished structural steel shelters and glass wind breaks, four levels up.",
     overview: [
@@ -431,7 +437,7 @@ export const projects: Project[] = [
     gallery: [
       "/projects/the-sentinel-takapuna/1.jpg",
       "/projects/the-sentinel-takapuna/2.jpg",
-      "/projects/the-sentinel-takapuna/3.jpg",
+      "/projects/the-sentinel-takapuna/bbq-courts.jpg",
     ],
     metaTitle: "Sentinel Tower, Takapuna | Exterior Living Upgrade",
     metaDescription:
@@ -442,6 +448,7 @@ export const projects: Project[] = [
     title: "Owens Road",
     category: "Residential",
     location: "Epsom, Auckland",
+    partner: "Jessop Architects",
     summary:
       "An extensive renovation of an altered single-level home — structural upgrade of the lower level, a new deck and carport, and a reconfigured interior opening to outdoor living.",
     overview: [
@@ -462,7 +469,7 @@ export const projects: Project[] = [
     hero: "/projects/owens-road-epsom/hero.jpg",
     gallery: [
       "/projects/owens-road-epsom/1.jpg",
-      "/projects/owens-road-epsom/2.jpg",
+      "/projects/owens-road-epsom/entrance.jpg",
       "/projects/owens-road-epsom/3.jpg",
     ],
     metaTitle: "Owens Road, Epsom | Home Renovation & Structural Upgrade",
@@ -474,7 +481,7 @@ export const projects: Project[] = [
     title: "Patey Street",
     category: "Residential",
     location: "Epsom, Auckland",
-    architect: "Malcolm Walker Architects",
+    partner: "Malcolm Walker Architects",
     summary:
       "Two new luxurious concrete townhouses in Epsom — four bedrooms, a curved internal stairwell and double internal garaging, built to the highest standard.",
     overview: [
@@ -510,6 +517,7 @@ export type RecentProject = {
   tag: string;
   location: string;
   brief: string;
+  partner: string;
 };
 
 export const recentProjects: RecentProject[] = [
@@ -518,18 +526,21 @@ export const recentProjects: RecentProject[] = [
     tag: "Commercial",
     location: "500 Queen Street, Auckland",
     brief: "Stage-one construction works at the Mercure Hotel on Queen Street.",
+    partner: "Team Avery",
   },
   {
     title: "Warkworth Water Pump Station",
     tag: "Infrastructure",
     location: "Warkworth · for Watercare",
     brief: "A water pump station built for Watercare in Warkworth.",
+    partner: "Q Designz Ltd",
   },
   {
     title: "Sarsfield Road",
     tag: "Residential",
     location: "St Marys Bay, Auckland",
     brief: "An entrance project at Sarsfield Road, St Marys Bay.",
+    partner: "Patterson Associates Ltd",
   },
 ];
 
@@ -538,6 +549,8 @@ export type Product = {
   name: string;
   tagline: string;
   blurb: string;
+  /** Optional hero/header image (path under /public). */
+  image?: string;
   formats?: string[];
   description: string[];
   features: string[];
@@ -580,6 +593,7 @@ export const products: Product[] = [
     slug: "fab-form",
     name: "Fab-Form",
     tagline: "Sole NZ distributor",
+    image: "/products/fab-form/hero.jpg",
     blurb:
       "Fab-Form Industries is a world leader in fabric forming, setting a higher standard in sustainable building. Made from a biodegradable fabric — fast, light, economic and green.",
     description: [

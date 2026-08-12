@@ -49,6 +49,9 @@ export default function ProjectsPage() {
                     {p.location}
                   </p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-slate">{p.brief}</p>
+                  <p className="mt-4 text-xs uppercase tracking-wider text-mute">
+                    Partner · {p.partner}
+                  </p>
                 </div>
               </Reveal>
             ))}
