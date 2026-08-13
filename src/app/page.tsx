@@ -4,6 +4,7 @@ import {
   credentials,
   products,
   projects,
+  references,
   services,
   site,
   stats,
@@ -12,6 +13,7 @@ import {
 import ProjectCarousel from "@/components/ProjectCarousel";
 import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
+import References from "@/components/References";
 
 export default function Home() {
   return (
@@ -273,6 +275,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ───────── References ───────── */}
+      <References items={references} />
 
       {/* ───────── Final CTA ───────── */}
       <section className="mx-auto max-w-7xl px-6 py-20 md:py-24">

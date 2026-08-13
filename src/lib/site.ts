@@ -618,6 +618,25 @@ export const products: Product[] = [
   },
 ];
 
+/**
+ * Client references — six written reference letters supplied by Dave.
+ * Add `quote` + `author` once the letters are transcribed into pull-quotes.
+ */
+export type Reference = {
+  org: string;
+  quote?: string;
+  author?: string;
+};
+
+export const references: Reference[] = [
+  { org: "Auckland University Students' Association" },
+  { org: "Metropolitan Rentals Ltd" },
+  { org: "Keith Hay Group" },
+  { org: "Auto Clutch Ltd" },
+  { org: "Hardcastle Electronics Ltd" },
+  { org: "N. H. Marsden" },
+];
+
 /** Current openings — the old site advertised roles; keep it live-updatable. */
 export const careers = {
   hiring: true,
