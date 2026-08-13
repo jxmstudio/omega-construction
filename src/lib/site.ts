@@ -629,12 +629,42 @@ export type Reference = {
 };
 
 export const references: Reference[] = [
-  { org: "Auckland University Students' Association" },
-  { org: "Metropolitan Rentals Ltd" },
-  { org: "Keith Hay Group" },
-  { org: "Auto Clutch Ltd" },
-  { org: "Hardcastle Electronics Ltd" },
-  { org: "N. H. Marsden" },
+  {
+    org: "Auckland University Students' Association",
+    author: "Raewyn Chojnacki",
+    quote:
+      "Even though we started three days late, the job was completed on time in an extremely professional manner. It was great working with you and the boys, and I will certainly put any work I can your way.",
+  },
+  {
+    org: "Metropolitan Rentals Ltd",
+    author: "Richard Langridge, Managing Director",
+    quote:
+      "He is extremely capable, has a good standard of work and projects are completed on time. I have no hesitation in recommending him as a competent and capable builder.",
+  },
+  {
+    org: "Keith Hay Group",
+    author: "Phil M. Lewis, Commercial Leasing & Property Manager",
+    quote:
+      "You and your staff completed this project in sometimes difficult weather and conditions, working around our tenant's daily business movements. We are very happy with the final building.",
+  },
+  {
+    org: "Auto Clutch Ltd",
+    author: "Raywn McCall",
+    quote:
+      "At all times I found him totally trustworthy and responsible. His workmanship is excellent and I would not hesitate to recommend him wholeheartedly.",
+  },
+  {
+    org: "Hardcastle Electronics Ltd",
+    author: "John Hardcastle, Managing Director",
+    quote:
+      "We are delighted with the appearance of his work and how well it blends with the original dwelling. He is evidently a very competent builder, very hard-working, cheerful and tidy.",
+  },
+  {
+    org: "D. M. Marsden",
+    author: "Private residence, Greenlane",
+    quote:
+      "I have no hesitation whatsoever in recommending David as a highly skilled builder with a totally disciplined approach. I have been totally satisfied with all aspects of the work.",
+  },
 ];
 
 /** Current openings — the old site advertised roles; keep it live-updatable. */
