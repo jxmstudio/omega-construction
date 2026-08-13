@@ -44,6 +44,11 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/#references" className="hover:text-accent">
+                References
+              </Link>
+            </li>
           </ul>
         </div>
 

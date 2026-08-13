@@ -5,7 +5,7 @@ export default function References({ items }: { items: Reference[] }) {
   const hasQuotes = items.some((r) => r.quote);
 
   return (
-    <section className="border-y border-line bg-sand">
+    <section id="references" className="scroll-mt-24 border-y border-line bg-sand">
       <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-strong">
