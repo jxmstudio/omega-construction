@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { projects, recentProjects, site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import ProjectsExplorer from "@/components/ProjectsExplorer";
@@ -40,18 +41,29 @@ export default function ProjectsPage() {
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {recentProjects.map((p, i) => (
               <Reveal key={p.title} delay={(i % 3) * 80} className="h-full">
-                <div className="flex h-full flex-col rounded-lg border border-line bg-surface p-6">
-                  <span className="w-fit rounded-full bg-accent-tint px-3 py-1 text-xs font-semibold text-accent-strong">
-                    {p.tag}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg font-bold text-ink">{p.title}</h3>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-mute">
-                    {p.location}
-                  </p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate">{p.brief}</p>
-                  <p className="mt-4 text-xs uppercase tracking-wider text-mute">
-                    Partner · {p.partner}
-                  </p>
+                <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-surface">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-ink-2">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
+                      {p.tag}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-display text-lg font-bold text-ink">{p.title}</h3>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-mute">
+                      {p.location}
+                    </p>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-slate">{p.brief}</p>
+                    <p className="mt-4 text-xs uppercase tracking-wider text-mute">
+                      Partner · {p.partner}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}

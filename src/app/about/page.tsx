@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { credentials, processSteps, site, stats, values } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
@@ -20,6 +21,20 @@ export default function AboutPage() {
         title="Three decades of building, and the reputation to match"
         intro="Omega Construction (Auckland) Limited was created in 1994 by David Williams to advance his successful sole-trading business and become an acknowledged competitor within the construction industry."
       />
+
+      {/* banner */}
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="relative -mt-8 aspect-[21/9] overflow-hidden rounded-2xl border border-line bg-ink-2 shadow-lg">
+          <Image
+            src="/brand/about-hero.jpg"
+            alt="Omega Construction on site"
+            fill
+            priority
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="object-cover"
+          />
+        </div>
+      </div>
 
       {/* story */}
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { products, site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 
@@ -26,11 +27,23 @@ export default function ProductsPage() {
               key={p.slug}
               className="flex flex-col overflow-hidden rounded-2xl border border-line-2 bg-surface"
             >
-              <div className="relative flex aspect-[16/10] items-center justify-center bg-ink-2 text-white/30">
-                <div className="bg-grid absolute inset-0 opacity-40" />
-                <span className="relative font-display text-lg uppercase tracking-wider">
-                  {p.name}
-                </span>
+              <div className="relative aspect-[16/10] overflow-hidden bg-ink-2">
+                {p.image ? (
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-white/30">
+                    <div className="bg-grid absolute inset-0 opacity-40" />
+                    <span className="relative font-display text-lg uppercase tracking-wider">
+                      {p.name}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="flex flex-1 flex-col p-7">
                 <span className="text-xs font-semibold uppercase tracking-wider text-accent">

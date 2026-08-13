@@ -518,6 +518,8 @@ export type RecentProject = {
   location: string;
   brief: string;
   partner: string;
+  /** Placeholder imagery for now — swap for real project photos later. */
+  image: string;
 };
 
 export const recentProjects: RecentProject[] = [
@@ -527,6 +529,7 @@ export const recentProjects: RecentProject[] = [
     location: "500 Queen Street, Auckland",
     brief: "Stage-one construction works at the Mercure Hotel on Queen Street.",
     partner: "Team Avery",
+    image: "/projects/recent/mercure.jpg",
   },
   {
     title: "Warkworth Water Pump Station",
@@ -534,6 +537,7 @@ export const recentProjects: RecentProject[] = [
     location: "Warkworth · for Watercare",
     brief: "A water pump station built for Watercare in Warkworth.",
     partner: "Q Designz Ltd",
+    image: "/projects/recent/warkworth.jpg",
   },
   {
     title: "Sarsfield Road",
@@ -541,6 +545,7 @@ export const recentProjects: RecentProject[] = [
     location: "St Marys Bay, Auckland",
     brief: "An entrance project at Sarsfield Road, St Marys Bay.",
     partner: "Patterson Associates Ltd",
+    image: "/projects/recent/sarsfield.jpg",
   },
 ];
 
@@ -566,6 +571,7 @@ export const products: Product[] = [
     slug: "cem-gon",
     name: "Cem-Gon™",
     tagline: "Sole NZ distribution agent",
+    image: "/products/cem-gon/hero.jpg", // placeholder image for now
     blurb:
       "A non-hazardous, naturally formulated system that removes concrete, slurry, mortar, grout and plaster splashes from a wide range of surfaces. Available in 500ml spray bottles and 5L containers.",
     formats: ["500ml spray bottle", "5L container"],
