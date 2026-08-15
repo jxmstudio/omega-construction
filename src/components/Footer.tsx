@@ -90,6 +90,12 @@ export default function Footer() {
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </span>
           <span>Sole NZ distributor of Cem-Gon™ &amp; Fab-Form</span>
+          <span>
+            Website by{" "}
+            <a href="https://www.jxmstudio.com/" className="hover:text-accent">
+              JXM Studio
+            </a>
+          </span>
         </div>
       </div>
     </footer>
