@@ -571,7 +571,7 @@ export const products: Product[] = [
     slug: "cem-gon",
     name: "Cem-Gon™",
     tagline: "Sole NZ distribution agent",
-    image: "/products/cem-gon/hero.jpg", // placeholder image for now
+    image: "/products/cem-gon/hero.jpg",
     blurb:
       "A non-hazardous, naturally formulated system that removes concrete, slurry, mortar, grout and plaster splashes from a wide range of surfaces. Available in 500ml spray bottles and 5L containers.",
     formats: ["500ml spray bottle", "5L container"],
