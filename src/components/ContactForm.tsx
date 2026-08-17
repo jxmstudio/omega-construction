@@ -4,6 +4,11 @@ import { useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+// JXM Forms endpoint. The key is public by design — it only authorises posting
+// to this one form, and spam filtering happens server-side.
+const FORMS_ENDPOINT = "https://jxm-forms.vercel.app/api/submit/omega-construction";
+const FORMS_KEY = "gio-ZlMKdpN0H1NEI-Pc_b04PuXa7EHu";
+
 const inputBase =
   "w-full rounded-lg border border-line-2 bg-surface px-4 py-2.5 text-ink outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/20";
 
@@ -17,8 +22,11 @@ export default function ContactForm() {
     setStatus("submitting");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
+      // Sent as multipart so the optional plans/photos attachment rides along;
+      // the key travels as both a header and a hidden field.
+      const res = await fetch(FORMS_ENDPOINT, {
         method: "POST",
+        headers: { "x-api-key": FORMS_KEY },
         body: new FormData(form),
       });
       const data = await res.json().catch(() => ({}));
@@ -55,10 +63,12 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
-      {/* honeypot — hidden from users, catches bots */}
+      <input type="hidden" name="_api_key" value={FORMS_KEY} />
+
+      {/* honeypot — hidden from users, catches bots. Must stay empty. */}
       <input
         type="text"
-        name="company"
+        name="_gotcha"
         tabIndex={-1}
         autoComplete="off"
         className="hidden"
