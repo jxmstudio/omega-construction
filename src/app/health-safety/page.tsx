@@ -5,7 +5,7 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Health & Safety | Site Safe Member & Master Builder",
+  title: "Health & Safety | Site Safe Member",
   description:
     "Omega Construction's health & safety credentials — Site Safe membership, Site Smart cloud-based H&S management and $10 million public liability insurance, with full compliance to the Health and Safety at Work Act 2015.",
   alternates: { canonical: "/health-safety" },

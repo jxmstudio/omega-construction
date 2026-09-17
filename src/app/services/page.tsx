@@ -4,7 +4,7 @@ import { services, site } from "@/lib/site";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Construction Services Auckland — Commercial & Residential",
+  title: "Construction Services Auckland",
   description:
     "Omega Construction's Auckland services: commercial construction, residential building & renovations, interior fit-outs, alterations, project management and subdivision management.",
   alternates: { canonical: "/services" },

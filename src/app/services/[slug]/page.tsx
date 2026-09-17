@@ -3,7 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, services, site } from "@/lib/site";
+import { areasForService } from "@/lib/areas";
+import { breadcrumbJsonLd, faqJsonLd, JsonLd, serviceJsonLd } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
+import FaqList from "@/components/FaqList";
 
 type Params = { slug: string };
 
@@ -19,6 +22,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = services.find((s) => s.slug === slug);
   if (!service) return {};
+  const related = service.relatedCategory
+    ? projects.filter((p) => p.category === service.relatedCategory)
+    : [];
   return {
     title: service.metaTitle,
     description: service.metaDescription,
@@ -26,6 +32,9 @@ export async function generateMetadata({
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
+      images: related[0]
+        ? [{ url: related[0].hero, alt: related[0].title }]
+        : [{ url: site.ogImage, alt: "Omega Construction on site in Auckland" }],
     },
   };
 }
@@ -42,41 +51,27 @@ export default async function ServiceDetail({
   const related = service.relatedCategory
     ? projects.filter((p) => p.category === service.relatedCategory)
     : [];
-  const others = services.filter((s) => s.slug !== service.slug).slice(0, 4);
+  const others = services.filter((s) => s.slug !== service.slug).slice(0, 6);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        name: service.title,
-        serviceType: service.title,
-        description: service.metaDescription,
-        areaServed: { "@type": "City", name: "Auckland" },
-        provider: {
-          "@type": "GeneralContractor",
-          name: site.legalName,
-          url: `https://${site.domain}`,
-          telephone: site.phone,
-        },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `https://${site.domain}/` },
-          { "@type": "ListItem", position: 2, name: "Services", item: `https://${site.domain}/services` },
-          { "@type": "ListItem", position: 3, name: service.title, item: `https://${site.domain}/services/${service.slug}` },
-        ],
-      },
-    ],
-  };
+  const serviceAreas = areasForService(service.slug);
+  const crumbs = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: service.title, href: `/services/${service.slug}` },
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={serviceJsonLd({
+          name: service.title,
+          description: service.metaDescription,
+          path: `/services/${service.slug}`,
+          areaServed: ["Auckland", ...serviceAreas.map((a) => a.name)],
+        })}
       />
+      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      {service.faqs.length > 0 && <JsonLd data={faqJsonLd(service.faqs)} />}
 
       {/* header */}
       <section className="relative overflow-hidden bg-ink text-white">
@@ -139,6 +134,10 @@ export default async function ServiceDetail({
                 </li>
               ))}
             </ul>
+
+            <div className="mt-12">
+              <FaqList faqs={service.faqs} heading={`${service.title}: common questions`} />
+            </div>
           </div>
 
           {/* sidebar CTA */}
@@ -202,6 +201,40 @@ export default async function ServiceDetail({
                   </Link>
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* areas */}
+      {serviceAreas.length > 0 && (
+        <section className="border-t border-line">
+          <div className="mx-auto max-w-7xl px-6 py-14 md:py-16">
+            <h2 className="font-display text-2xl font-bold text-ink md:text-3xl">
+              {service.title.toLowerCase().includes("construction")
+                ? `Where we deliver ${service.title.toLowerCase()}`
+                : `${service.title} across Auckland`}
+            </h2>
+            <p className="mt-3 max-w-2xl text-slate">
+              Based in Mt Eden and working Auckland-wide. Read about our work in the areas
+              where this service is most in demand.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {serviceAreas.map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/areas/${a.slug}`}
+                  className="rounded-full border border-line-2 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent"
+                >
+                  {a.name}
+                </Link>
+              ))}
+              <Link
+                href="/areas"
+                className="rounded-full bg-sand px-4 py-2 text-sm font-semibold text-accent hover:text-accent-strong"
+              >
+                All areas →
+              </Link>
             </div>
           </div>
         </section>

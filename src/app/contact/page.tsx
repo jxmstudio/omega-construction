@@ -4,7 +4,7 @@ import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Omega Construction | Request a Quote",
+  title: "Contact & Request a Quote",
   description:
     "Get in touch with Omega Construction, Auckland. Request a quote for commercial or residential building, or a trade enquiry for Cem-Gon™ and Fab-Form. Call or send an enquiry.",
   alternates: { canonical: "/contact" },

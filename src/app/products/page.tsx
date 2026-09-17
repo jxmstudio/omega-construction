@@ -5,7 +5,7 @@ import { products, site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Products | Cem-Gon™ & Fab-Form — Sole NZ Distributor",
+  title: "Cem-Gon™ & Fab-Form | Sole NZ Distributor",
   description:
     "Omega Construction is the sole New Zealand distributor of Cem-Gon™ concrete splash remover and Fab-Form sustainable fabric forming systems.",
   alternates: { canonical: "/products" },

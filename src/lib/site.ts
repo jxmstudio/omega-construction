@@ -13,7 +13,15 @@ export const site = {
   founder: "David Williams",
   founderCreds: "Registered Master Builder · Licensed Building Practitioner",
   domain: "omega-construction.co.nz",
+  /** Canonical origin. Production 308-redirects the bare domain to www, so every
+   *  canonical, sitemap entry and schema URL must use this host. */
+  url: "https://www.omega-construction.co.nz",
   region: "Auckland",
+  /** Where the business is based (PO Box; no street address is published). */
+  suburb: "Mt Eden",
+  postcode: "1446",
+  /** Default social-share image (1400×1050). */
+  ogImage: "/brand/about-hero.jpg",
   tagline: "Quality Name, Quality Construction.",
   taglineAlt: "Shaping buildings and homes with passion and skill.",
 
@@ -34,6 +42,10 @@ export const site = {
   publicLiability: "$10 million",
 
   linkedin: "https://www.linkedin.com/company/omega-construction-auckland", // verify exact URL
+  /** Positioning agreed with Dave: balanced commercial + upper-end residential,
+   *  with commercial the preferred growth area (emails 22 Jul & 7 Sep 2026). */
+  positioning:
+    "Commercial construction and upper-end residential building across Auckland — office, retail, hospitality, education, healthcare, seismic upgrades and architectural homes.",
 } as const;
 
 /**
@@ -46,6 +58,7 @@ export const nav = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
+  { label: "Areas", href: "/areas" },
   { label: "Health & Safety", href: "/health-safety" },
   { label: "Products", href: "/products" },
   { label: "Contact", href: "/contact" },
@@ -147,17 +160,42 @@ export type Service = {
   includes: string[];
   /** Which portfolio category to surface as related work. */
   relatedCategory?: "Commercial" | "Residential";
+  /** Shown in the home-page services grid (the services index shows all). */
+  featured?: boolean;
+  /** Question/answer pairs rendered on the page and emitted as FAQPage schema. */
+  faqs: Faq[];
 };
+
+export type Faq = { q: string; a: string };
 
 export const services: Service[] = [
   {
     slug: "commercial-construction",
+    featured: true,
+    faqs: [
+      {
+        q: "Do you take on commercial tenders in Auckland?",
+        a: "Yes. Omega Construction tenders for and negotiates commercial work across Auckland — office, retail, mixed-use and warehouse projects, from single-storey refurbishments to multi-storey structural work. We're a Registered Master Builder with Site Safe membership, $10 million public liability cover and a Site Smart H&S system, so our prequalification paperwork is ready for procurement teams.",
+      },
+      {
+        q: "Can you work around a tenant or business that stays open during the build?",
+        a: "Yes. Most of our commercial work is delivered inside operating buildings. At South Pacific Pictures we built a 400 m² administration floor above a working studio while production continued below, and at Andrew Baxter Drive we refurbished an office and warehouse for a multinational tenant. We stage work, isolate zones and programme noisy tasks to keep businesses trading.",
+      },
+      {
+        q: "What size of commercial project do you typically deliver?",
+        a: "Our recent commercial projects range from roughly $350,000 to $1.4 million — for example the Sentinel Tower pool-level upgrade in Takapuna and the South Pacific Pictures office build. We also take on smaller alterations and maintenance packages for property managers.",
+      },
+      {
+        q: "Do you handle council consents and engineering for commercial work?",
+        a: "Yes. We coordinate the engineers, surveyors and consultants your project needs, manage the building consent process with Auckland Council, and carry the health and safety compliance obligations through to Code Compliance Certificate.",
+      },
+    ],
     title: "Commercial Construction",
     short: "Single & multi-storey structural work, new builds and renovations.",
     description:
       "Single and multi-storey structure, new builds and renovations delivered to programme, with the health & safety systems commercial tenders demand — including seismic upgrading.",
     sectors: ["Office", "Retail", "Mixed-use", "Warehouse", "Seismic upgrades"],
-    metaTitle: "Commercial Builder Auckland | Commercial Construction",
+    metaTitle: "Commercial Builder Auckland",
     metaDescription:
       "Auckland commercial construction — single & multi-storey new builds, structural work, renovations and seismic upgrades. Site Safe certified, Registered Master Builder since 1994.",
     intro: [
@@ -175,12 +213,31 @@ export const services: Service[] = [
   },
   {
     slug: "residential-building-renovations",
+    featured: true,
+    faqs: [
+      {
+        q: "What kind of homes does Omega Construction build and renovate?",
+        a: "We focus on upper-end residential work in Auckland: architect-designed new homes, multiple-dwelling and townhouse projects, full structural remodels, recladding and extensions. Recent examples include two concrete townhouses on Patey Street in Epsom, a full structural rebuild on Lincoln Street in Ponsonby, and an extensive renovation on Owens Road in Epsom.",
+      },
+      {
+        q: "Do you work with my architect or do you design as well?",
+        a: "We build alongside your architect or designer. Omega has delivered projects with KOIA Architects, Jessop Architects, Malcolm Walker Architects, Team Avery and Patterson Associates, and we're comfortable joining early to advise on buildability, sequencing and cost.",
+      },
+      {
+        q: "Are you a Registered Master Builder and can I get a Master Build guarantee?",
+        a: "Yes. Omega Construction has been a Registered Master Builder for 35 years (MBA #1951) and David Williams is a Licensed Building Practitioner (LBP #102450). Master Build 10-Year Guarantee cover can be arranged for eligible new homes and renovations — ask us when you request a quote.",
+      },
+      {
+        q: "How do you quote a renovation?",
+        a: "David meets you on site, assesses the scope and consults trusted trades and suppliers before providing a detailed, obligation-free quote that is valid for 30 days and usually covers materials, labour and GST. For larger jobs you get weekly updates throughout the build.",
+      },
+    ],
     title: "Residential Building & Renovations",
     short: "New homes, architectural remodels, recladding and refurbishment.",
     description:
       "Upper-end residential building and renovation — new builds including multiple dwellings, architectural remodels, recladding, extensions and full refurbishment of existing homes.",
     sectors: ["New homes", "Multiple dwellings", "Recladding", "Extensions"],
-    metaTitle: "House Renovation & New Home Builder Auckland",
+    metaTitle: "Home Renovations & New Homes Auckland",
     metaDescription:
       "Upper-end Auckland home building and renovation — new homes, architectural remodels, recladding, extensions and refurbishment. Registered Master Builder, award-winning work.",
     intro: [
@@ -198,12 +255,27 @@ export const services: Service[] = [
   },
   {
     slug: "interior-fit-outs-refurbishment",
+    featured: true,
+    faqs: [
+      {
+        q: "Can you fit out an office while our staff keep working?",
+        a: "Yes. Working within live, operating environments is one of our specialities. We stage the fit-out in zones, schedule noisy or dusty work outside your busy hours where possible, and keep fire egress and services running throughout.",
+      },
+      {
+        q: "Do you do hospitality and entertainment fit-outs?",
+        a: "Yes. Hospitality and entertainment projects are one of the sectors Omega Construction specialises in, alongside office, retail, education and healthcare fit-outs. See our dedicated hospitality fit-out page for detail.",
+      },
+      {
+        q: "What is a change-of-use project and do you handle the consents?",
+        a: "A change-of-use project converts a building from one use to another — for example a warehouse to offices or a retail unit to a clinic. These trigger additional Building Code requirements for fire, access and structure. We coordinate the consultants and manage the consent with Auckland Council as part of the fit-out.",
+      },
+    ],
     title: "Interior Fit-Outs & Refurbishment",
     short: "Commercial and residential fit-out of existing buildings.",
     description:
       "Transforming existing spaces — interior fit-out and refurbishment of existing buildings across commercial and residential, including change-of-use projects.",
     sectors: ["Commercial", "Hospitality", "Change-of-use"],
-    metaTitle: "Commercial Fit-Out & Refurbishment Auckland",
+    metaTitle: "Commercial Fit-Outs Auckland",
     metaDescription:
       "Auckland interior fit-outs and refurbishment for existing commercial and residential buildings — hospitality, entertainment and change-of-use projects. Delivered around live operations.",
     intro: [
@@ -221,12 +293,27 @@ export const services: Service[] = [
   },
   {
     slug: "alterations-structural-work",
+    featured: true,
+    faqs: [
+      {
+        q: "Do you take on structural alterations like removing load-bearing walls?",
+        a: "Yes. Structural alterations are a core part of our work — removing internal walls and installing structural steel to open up living spaces, strengthening foundations and exterior walls, and reconfiguring existing buildings. Every structural change is engineered and consented.",
+      },
+      {
+        q: "Do you do small jobs and building maintenance?",
+        a: "Yes. Alongside larger projects we carry out alterations, extensions and ongoing maintenance for homeowners, body corporates and property managers across Auckland.",
+      },
+      {
+        q: "Will you manage the building consent for my alteration?",
+        a: "Yes. We handle engineering and consent coordination end to end, working with Auckland Council from application through to Code Compliance Certificate.",
+      },
+    ],
     title: "Alterations & Structural Work",
     short: "Alterations, extensions, maintenance and structural work.",
     description:
       "The 'you name it, we can build it' capability — alterations, extensions, maintenance and structural work across residential and commercial buildings.",
     sectors: ["Alterations", "Extensions", "Structural", "Maintenance"],
-    metaTitle: "Building Alterations & Structural Work Auckland",
+    metaTitle: "Alterations & Structural Work Auckland",
     metaDescription:
       "Auckland building alterations, extensions, structural work and maintenance — residential and commercial. Registered Master Builder, Licensed Building Practitioner since 1994.",
     intro: [
@@ -243,6 +330,17 @@ export const services: Service[] = [
   },
   {
     slug: "project-management",
+    featured: false,
+    faqs: [
+      {
+        q: "What does construction project management from Omega include?",
+        a: "We take a project from concept to completion: organising and managing every sub-trade, liaising with Auckland Council on consents, controlling programme, budget and quality, and carrying the health and safety compliance obligations on site.",
+      },
+      {
+        q: "Do you provide weekly updates?",
+        a: "Yes. Larger projects get formal weekly updates and smaller projects get regular check-ins, so you always know where the programme, budget and next decisions stand.",
+      },
+    ],
     title: "Project Management",
     short: "Concept to completion, with every sub-trade and consent handled.",
     description:
@@ -265,6 +363,17 @@ export const services: Service[] = [
   },
   {
     slug: "subdivision-management",
+    featured: false,
+    faqs: [
+      {
+        q: "What does subdivision management involve?",
+        a: "Managing the surveyors, engineers, sub-trades and council process needed to make a subdivision compliant — from early planning and resource consent through to the Section 224(c) certificate that lets new titles issue.",
+      },
+      {
+        q: "Can you also build the new dwellings on the subdivided site?",
+        a: "Yes. Omega Construction has delivered multiple-dwelling residential projects, such as the two concrete townhouses on Patey Street in Epsom, so we can manage the subdivision and build the homes as one continuous project.",
+      },
+    ],
     title: "Subdivision Management",
     short: "Surveyors, sub-trades and council managed to compliance.",
     description:
@@ -282,6 +391,166 @@ export const services: Service[] = [
       "Council and consent management",
       "Compliance to sign-off",
       "Programme and cost oversight",
+    ],
+  },
+  {
+    slug: "seismic-strengthening",
+    title: "Seismic Strengthening & Upgrades",
+    short: "Earthquake-prone building upgrades for commercial and multi-unit buildings.",
+    description:
+      "Seismic strengthening and structural upgrades for earthquake-prone commercial and multi-unit buildings across Auckland — engineered, consented and delivered around occupied buildings.",
+    sectors: ["Earthquake-prone buildings", "Office", "Retail", "Body corporate"],
+    metaTitle: "Seismic Strengthening Auckland",
+    metaDescription:
+      "Seismic strengthening and structural upgrades for earthquake-prone commercial and multi-unit buildings in Auckland — engineered, consented and staged around occupied buildings.",
+    intro: [
+      "If your building has been assessed as earthquake-prone, or your engineer has recommended strengthening to lift its %NBS rating, Omega Construction can deliver the structural works — steel portal frames and bracing, foundation and floor-diaphragm upgrades, wall ties and parapet restraints — as a Registered Master Builder with three decades of commercial structural experience in Auckland.",
+      "Seismic work is rarely done in an empty building. We plan the strengthening in stages, protect tenants and trading operations, and coordinate the structural engineer, Auckland Council consent and any heritage or fire requirements so the upgrade is signed off cleanly.",
+    ],
+    includes: [
+      "Strengthening to engineer's design — steel frames, bracing, diaphragm and foundation upgrades",
+      "Unreinforced masonry (URM) wall ties and parapet restraints",
+      "Staging around occupied offices, retail and residential units",
+      "Building consent and Code Compliance Certificate coordination",
+      "Combined seismic and refurbishment packages",
+    ],
+    relatedCategory: "Commercial",
+    featured: true,
+    faqs: [
+      {
+        q: "What is an earthquake-prone building and does it have to be strengthened?",
+        a: "Under the Building (Earthquake-prone Buildings) Amendment Act, a building rated below 34% of the New Building Standard (NBS) is earthquake-prone. Auckland is a low seismic risk zone, so owners generally have 35 years from the notice date to strengthen or demolish — but tenants, insurers and buyers increasingly expect higher ratings sooner. We work to your engineer's design to bring the building above the threshold.",
+      },
+      {
+        q: "Can seismic strengthening be done while the building is occupied?",
+        a: "Usually, yes. We stage the works floor by floor or zone by zone, isolate the active area, and schedule noisy tasks around tenants' operations. We have delivered structural work inside operating offices, studios and apartment buildings across Auckland.",
+      },
+      {
+        q: "Do you provide the engineering?",
+        a: "We build to a chartered structural engineer's design. If you don't yet have an engineer or a Detailed Seismic Assessment (DSA), we can introduce engineers we work with regularly and coordinate the assessment, design and consent as one package.",
+      },
+      {
+        q: "Is it worth combining seismic work with a refurbishment?",
+        a: "Often, yes. Strengthening opens up walls, ceilings and floors anyway, so it's an efficient time to upgrade services, fire systems, bathrooms and finishes. We regularly price the combined scope so owners can compare options.",
+      },
+    ],
+  },
+  {
+    slug: "recladding-weathertightness",
+    title: "Recladding & Weathertightness Remediation",
+    short: "Full reclads and targeted weathertightness repairs for Auckland homes.",
+    description:
+      "Recladding and weathertightness remediation for Auckland homes — from targeted repairs to full reclads with structural upgrades, delivered by a Registered Master Builder and Licensed Building Practitioner.",
+    sectors: ["Full reclad", "Leaky home repair", "Cavity systems", "Structural upgrade"],
+    metaTitle: "Recladding & Leaky Home Repairs Auckland",
+    metaDescription:
+      "Recladding and leaky-home remediation across Auckland — full reclads, drained cavities and structural repairs by a Registered Master Builder and Licensed Building Practitioner.",
+    intro: [
+      "Monolithic cladding, failed flashings and no drainage cavity have left many Auckland homes built between the late 1980s and mid-2000s with moisture damage. Omega Construction recladds these homes properly: strip the cladding, replace rotten framing, install a drained and ventilated cavity, and re-clad in the material and profile you and your architect choose.",
+      "Recladding is also the moment to fix what else is wrong with the house. Our Urban Oasis project on Lincoln Street in Ponsonby began as an alteration and reclad and became a full structural rebuild with open-plan living, bespoke joinery and smart wiring — a good example of what's possible when the walls are open.",
+    ],
+    includes: [
+      "Invasive moisture testing and scope with your building surveyor or architect",
+      "Full reclad with drained cavity, new flashings and joinery",
+      "Replacement of decayed framing and structural repairs",
+      "Targeted weathertightness repairs where a full reclad isn't needed",
+      "Building consent, council inspections and Code Compliance Certificate",
+    ],
+    relatedCategory: "Residential",
+    featured: true,
+    faqs: [
+      {
+        q: "How do I know if my house needs recladding?",
+        a: "Warning signs include soft or stained plaster, cracked or bubbling monolithic cladding, swollen skirtings, musty smells and rust staining at fixings. The reliable answer comes from invasive moisture testing by a building surveyor, which we can arrange. If the framing is dry and the defects are localised, targeted repairs may be enough; widespread moisture usually means a full reclad.",
+      },
+      {
+        q: "How long does a full reclad take?",
+        a: "A typical Auckland reclad takes three to six months on site depending on the size of the home, the amount of framing to replace and whether the scope includes new joinery, decks or interior work. We give you a programme with the quote and weekly updates during the build.",
+      },
+      {
+        q: "Can we live in the house during a reclad?",
+        a: "Often, yes. We wrap and weatherproof the house in stages so it stays secure and dry. If the scope includes major interior work, structural changes or a roof replacement it may be more comfortable to move out for part of the programme — we'll tell you upfront.",
+      },
+      {
+        q: "Do you need a building consent to reclad?",
+        a: "Yes. Recladding is restricted building work under the Building Act and needs a building consent and a Licensed Building Practitioner. David Williams is an LBP (#102450), and we manage the consent, inspections and Code Compliance Certificate with Auckland Council.",
+      },
+    ],
+  },
+  {
+    slug: "hospitality-fit-outs",
+    title: "Hospitality & Entertainment Fit-Outs",
+    short: "Restaurants, bars, hotels and entertainment venues, built around trading.",
+    description:
+      "Hospitality and entertainment construction across Auckland — restaurant, bar, café, hotel and venue fit-outs and refurbishments, delivered to programme and staged around trading.",
+    sectors: ["Restaurants & bars", "Hotels", "Cafés", "Entertainment venues"],
+    metaTitle: "Hospitality Fit-Outs Auckland",
+    metaDescription:
+      "Restaurant, bar, café, hotel and venue fit-outs across Auckland, staged around trading. Stage-one works at the Mercure Hotel, Queen Street. Registered Master Builder since 1994.",
+    intro: [
+      "Hospitality projects run on opening dates. Omega Construction delivers restaurant, bar, café, hotel and entertainment-venue fit-outs across Auckland to a fixed programme — coordinating kitchen and bar services, fire and acoustic requirements, and the joinery and finishes that define the venue.",
+      "We understand trading buildings. Our stage-one works at the Mercure Hotel on Queen Street, and years of fit-outs inside operating offices and studios, mean we can isolate the work zone, protect guests and staff, and phase noisy tasks so the business keeps running.",
+    ],
+    includes: [
+      "Restaurant, bar and café fit-outs and refurbishments",
+      "Hotel guest-room, lobby and back-of-house upgrades",
+      "Commercial kitchen and bar services coordination",
+      "Fire, acoustic and accessibility compliance for licensed premises",
+      "Staged programmes around trading hours",
+    ],
+    relatedCategory: "Commercial",
+    featured: true,
+    faqs: [
+      {
+        q: "Can you fit out a restaurant or bar on a fixed opening date?",
+        a: "Yes. We build a programme back from your opening date, lock in long-lead items such as kitchen equipment and joinery early, and run weekly programme reviews so any risk to the date is visible weeks out, not days.",
+      },
+      {
+        q: "Do you handle the consents for a change of use to hospitality?",
+        a: "Yes. Converting retail or office space to a licensed hospitality venue triggers fire, accessibility, ventilation and sometimes structural requirements. We coordinate the consultants and manage the building consent with Auckland Council as part of the fit-out.",
+      },
+      {
+        q: "Can you work in a hotel or venue that stays open?",
+        a: "Yes. We deliver work in trading hotels and venues by isolating the work zone, controlling noise and dust, and scheduling around check-in times and events — as we did on the stage-one works at the Mercure Hotel on Queen Street.",
+      },
+    ],
+  },
+  {
+    slug: "education-healthcare-construction",
+    title: "Education & Healthcare Construction",
+    short: "Schools, campuses, clinics and medical suites, built to sector standards.",
+    description:
+      "Construction for education and healthcare facilities across Auckland — school and campus refurbishments, new teaching spaces, clinics and medical fit-outs, delivered safely around students, patients and staff.",
+    sectors: ["Schools & campuses", "Clinics & medical suites", "Change-of-use", "Refurbishment"],
+    metaTitle: "Education & Healthcare Builders Auckland",
+    metaDescription:
+      "School, campus, clinic and medical-suite construction in Auckland. Site Safe member with a zero reportable-accident record, delivering safely around students and patients.",
+    intro: [
+      "Education and healthcare are specialist sectors for Omega Construction. Schools, tertiary campuses, clinics and medical suites carry their own standards — infection control, accessibility, acoustic separation, secure site boundaries around students and patients — and we plan every project around them.",
+      "Our long relationship with the education sector includes work for the Auckland University Students' Association, delivered on time after a late start. Combined with a Site Safe membership, Site Smart H&S management and zero reportable workplace accidents, it's the assurance boards, facilities managers and practice owners look for.",
+    ],
+    includes: [
+      "School and campus refurbishments and new teaching spaces",
+      "Medical, dental and allied-health clinic fit-outs",
+      "Change-of-use conversions to education or healthcare",
+      "Secure, staged programmes around term dates and clinic hours",
+      "Accessibility, acoustic and infection-control detailing",
+    ],
+    relatedCategory: "Commercial",
+    featured: false,
+    faqs: [
+      {
+        q: "Can you build during school terms or do you need the holidays?",
+        a: "Both. We programme disruptive work — demolition, structural changes, roofing — into term breaks where possible, and deliver the rest behind secure hoardings with separate site access during term. Every worker on our sites is Site Safe inducted.",
+      },
+      {
+        q: "Do you fit out medical and dental clinics?",
+        a: "Yes. We deliver clinic and medical-suite fit-outs including consulting rooms, treatment areas, reception and back-of-house, coordinating medical gas, plumbing, HVAC and the wipe-down finishes infection control requires.",
+      },
+      {
+        q: "What health and safety systems do you run on education and healthcare sites?",
+        a: "Omega Construction is a Site Safe member and runs Site Smart, a cloud-based H&S management system, on every job. We hold $10 million public liability insurance and have a zero reportable workplace accident record.",
+      },
     ],
   },
 ];
@@ -340,7 +609,7 @@ export const projects: Project[] = [
       "/projects/urban-oasis-ponsonby/front-of-house.jpg",
       "/projects/urban-oasis-ponsonby/master-bathroom.jpg",
     ],
-    metaTitle: "Urban Oasis, Ponsonby | Architectural Home Rebuild",
+    metaTitle: "Urban Oasis, Ponsonby | Home Rebuild",
     metaDescription:
       "A Lincoln Street, Ponsonby alteration and reclad that became a full structural rebuild — bespoke joinery, Caesarstone, smart wiring and open-plan living by Omega Construction.",
   },
@@ -373,7 +642,7 @@ export const projects: Project[] = [
       "/projects/andrew-baxter-drive/2.jpg",
       "/projects/andrew-baxter-drive/3.jpg",
     ],
-    metaTitle: "Andrew Baxter Drive | Commercial Refurbishment Auckland",
+    metaTitle: "Andrew Baxter Drive | Commercial Refurb",
     metaDescription:
       "An office and warehouse near Auckland Airport transformed into a vibrant workspace for a multinational tenant — cantilevered canopy, two-hour firewalls and full fit-out.",
   },
@@ -381,7 +650,7 @@ export const projects: Project[] = [
     slug: "south-pacific-pictures",
     title: "South Pacific Pictures",
     category: "Commercial",
-    location: "8 Tolich Place, Auckland",
+    location: "Tolich Place, Henderson",
     partner: "John Barnett",
     partnerFull: "John Barnett + Team Avery",
     summary:
@@ -406,7 +675,7 @@ export const projects: Project[] = [
       "/projects/south-pacific-pictures/2.jpg",
       "/projects/south-pacific-pictures/3.jpg",
     ],
-    metaTitle: "South Pacific Pictures | Commercial Office Build Auckland",
+    metaTitle: "South Pacific Pictures | Office Build",
     metaDescription:
       "A 400 m² open-plan administration floor with exterior decks, built above an operating studio at South Pacific Pictures with Team Avery — delivered around a live production.",
   },
@@ -439,7 +708,7 @@ export const projects: Project[] = [
       "/projects/the-sentinel-takapuna/2.jpg",
       "/projects/the-sentinel-takapuna/bbq-courts.jpg",
     ],
-    metaTitle: "Sentinel Tower, Takapuna | Exterior Living Upgrade",
+    metaTitle: "Sentinel Tower, Takapuna | Pool Level",
     metaDescription:
       "A fourth-floor pool and exterior-living upgrade at Takapuna's Sentinel Tower — prefinished structural-steel shelters and glass wind breaks by Omega Construction.",
   },
@@ -472,7 +741,7 @@ export const projects: Project[] = [
       "/projects/owens-road-epsom/entrance.jpg",
       "/projects/owens-road-epsom/3.jpg",
     ],
-    metaTitle: "Owens Road, Epsom | Home Renovation & Structural Upgrade",
+    metaTitle: "Owens Road, Epsom | Home Renovation",
     metaDescription:
       "An extensive Epsom renovation — structural upgrade of the lower level, a new deck and double carport, and a fully reconfigured interior opening to outdoor living.",
   },
@@ -505,7 +774,7 @@ export const projects: Project[] = [
       "/projects/patey-street/2.jpg",
       "/projects/patey-street/3.jpg",
     ],
-    metaTitle: "Patey Street, Epsom | Concrete Townhouses Auckland",
+    metaTitle: "Patey Street, Epsom | Concrete Townhouses",
     metaDescription:
       "Two luxurious concrete townhouses in Epsom — four bedrooms, curved internal stairwell and double garaging, built to the highest standard by Omega Construction.",
   },
@@ -591,7 +860,7 @@ export const products: Product[] = [
       { label: "Report B — Test procedure CG-01 on material surfaces", href: "#" },
       { label: "Safety Data Sheet (SDS)", href: "#" },
     ],
-    metaTitle: "Cem-Gon™ NZ | Concrete, Mortar & Grout Splash Remover",
+    metaTitle: "Cem-Gon™ NZ | Concrete Splash Remover",
     metaDescription:
       "Cem-Gon™ — a non-hazardous, naturally formulated remover of concrete, slurry, mortar, grout and plaster splashes. Sole NZ distributor Omega Construction. 500ml & 5L.",
   },
@@ -612,7 +881,7 @@ export const products: Product[] = [
       "Economical",
       "Sustainable — build green from the ground up",
     ],
-    metaTitle: "Fab-Form NZ | Sustainable Fabric Forming Systems",
+    metaTitle: "Fab-Form NZ | Fabric Forming Systems",
     metaDescription:
       "Fab-Form — world-leading, biodegradable fabric forming for sustainable building. Sole New Zealand distributor: Omega Construction. Fast, light, economic and green.",
   },

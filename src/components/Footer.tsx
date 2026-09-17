@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { credentials, nav, services, site } from "@/lib/site";
+import { areas } from "@/lib/areas";
 
 export default function Footer() {
   return (
     <footer className="bg-ink text-white/70">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-5">
         <div>
           <Image
             src="/brand/omega-mark-white.png"
@@ -31,6 +32,24 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Areas we serve</h3>
+          <ul className="mt-4 space-y-2 text-sm">
+            {areas.map((a) => (
+              <li key={a.slug}>
+                <Link href={`/areas/${a.slug}`} className="hover:text-accent">
+                  {a.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/areas" className="font-medium text-white/90 hover:text-accent">
+                All areas →
+              </Link>
+            </li>
           </ul>
         </div>
 

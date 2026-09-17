@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-type Crumb = { label: string; href?: string };
+import { breadcrumbJsonLd, JsonLd, type Crumb } from "@/lib/seo";
 
 export default function PageHeader({
   crumbs,
@@ -15,6 +14,7 @@ export default function PageHeader({
 }) {
   return (
     <section className="relative overflow-hidden bg-ink text-white">
+      <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <div className="bg-grid absolute inset-0 opacity-70" />
       <div
         className="absolute inset-y-0 right-0 w-1/2 opacity-[0.15]"

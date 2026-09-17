@@ -7,7 +7,7 @@ import ProjectsExplorer from "@/components/ProjectsExplorer";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Projects & Case Studies — Commercial & Residential Auckland",
+  title: "Projects & Case Studies Auckland",
   description:
     "A portfolio of Omega Construction's commercial and residential projects across Auckland — from architectural home remodels to structural commercial transformations.",
   alternates: { canonical: "/projects" },

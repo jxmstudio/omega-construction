@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { projects, site, SHOW_PROJECT_VALUES } from "@/lib/site";
+import { projects, SHOW_PROJECT_VALUES } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import ProjectGallery from "@/components/ProjectGallery";
 
@@ -24,7 +24,11 @@ export async function generateMetadata({
     title: project.metaTitle,
     description: project.metaDescription,
     alternates: { canonical: `/projects/${project.slug}` },
-    openGraph: { title: project.metaTitle, description: project.metaDescription },
+    openGraph: {
+      title: project.metaTitle,
+      description: project.metaDescription,
+      images: [{ url: project.hero, alt: project.title }],
+    },
   };
 }
 
@@ -39,23 +43,9 @@ export default async function ProjectDetail({
 
   const others = projects.filter((p) => p.slug !== project.slug).slice(0, 2);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `https://${site.domain}/` },
-      { "@type": "ListItem", position: 2, name: "Projects", item: `https://${site.domain}/projects` },
-      { "@type": "ListItem", position: 3, name: project.title, item: `https://${site.domain}/projects/${project.slug}` },
-    ],
-  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
       <PageHeader
         crumbs={[
           { label: "Home", href: "/" },

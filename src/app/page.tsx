@@ -10,6 +10,7 @@ import {
   stats,
   whyChooseUs,
 } from "@/lib/site";
+import { regions, suburbAreas } from "@/lib/areas";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
@@ -18,8 +19,6 @@ import References from "@/components/References";
 export default function Home() {
   return (
     <>
-      <JsonLd />
-
       {/* ───────── Hero ───────── */}
       <section className="relative overflow-hidden bg-ink text-white">
         <Image
@@ -140,7 +139,7 @@ export default function Home() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
+            {services.filter((s) => s.featured).map((s, i) => (
               <Reveal key={s.slug} delay={(i % 3) * 80} className="h-full">
                 <Link
                   href={`/services/${s.slug}`}
@@ -186,6 +185,59 @@ export default function Home() {
 
         <div className="mt-10">
           <ProjectCarousel projects={projects} />
+        </div>
+      </section>
+
+      {/* ───────── Where we work ───────── */}
+      <section className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <SectionTag>Where we work</SectionTag>
+            <h2 className="mt-4 font-display text-3xl font-bold text-ink md:text-4xl">
+              Auckland-wide, based in Mt Eden
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-slate">
+              From our Dominion Road base we build across the isthmus, the North Shore,
+              West and South Auckland and up to Warkworth — commercial projects and
+              upper-end homes alike.
+            </p>
+            <Link
+              href="/areas"
+              className="mt-6 inline-flex items-center gap-2 font-semibold text-accent hover:text-accent-strong"
+            >
+              All areas we serve →
+            </Link>
+          </div>
+          <div className="md:col-span-7">
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {regions.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/areas/${r.slug}`}
+                    className="group flex h-full flex-col rounded-lg border border-line-2 bg-surface p-5 transition-colors hover:border-accent"
+                  >
+                    <span className="font-display text-base font-bold text-ink group-hover:text-accent">
+                      {r.name}
+                    </span>
+                    <span className="mt-1 text-sm text-mute">
+                      {r.suburbs.slice(0, 4).join(" · ")}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-sm text-mute">
+              Suburb guides:{" "}
+              {suburbAreas.map((a, i) => (
+                <span key={a.slug}>
+                  <Link href={`/areas/${a.slug}`} className="font-medium text-accent hover:text-accent-strong">
+                    {a.name}
+                  </Link>
+                  {i < suburbAreas.length - 1 ? ", " : ""}
+                </span>
+              ))}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -331,28 +383,3 @@ function SectionTag({
   );
 }
 
-function JsonLd() {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    name: site.legalName,
-    url: `https://${site.domain}`,
-    telephone: site.phone,
-    foundingDate: String(site.established),
-    areaServed: { "@type": "City", name: "Auckland" },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Auckland",
-      addressCountry: "NZ",
-    },
-    description:
-      "Auckland commercial and residential building contractor established in 1994. Site Safe certified.",
-    knowsAbout: services.map((s) => s.title),
-  };
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
-}

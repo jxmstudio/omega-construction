@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
+import { JsonLd, organizationJsonLd } from "@/lib/seo";
 
 const display = Archivo({
   variable: "--font-display",
@@ -17,11 +18,12 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${site.domain}`),
+  metadataBase: new URL(site.url),
   title: {
     default: "Omega Construction | Commercial & Residential Builder Auckland",
-    template: "%s | Omega Construction Auckland",
+    template: "%s | Omega Construction",
   },
+  alternates: { canonical: "/" },
   description:
     "Omega Construction is an Auckland commercial and residential builder established in 1994. Site Safe certified. New builds, renovations, fit-outs and alterations.",
   keywords: [
@@ -30,6 +32,8 @@ export const metadata: Metadata = {
     "house renovation Auckland",
     "commercial fit-out Auckland",
     "building alterations Auckland",
+    "seismic strengthening Auckland",
+    "recladding Auckland",
   ],
   openGraph: {
     type: "website",
@@ -38,6 +42,22 @@ export const metadata: Metadata = {
     title: "Omega Construction | Commercial & Residential Builder Auckland",
     description:
       "Auckland commercial and residential builder established in 1994. Site Safe certified.",
+    url: site.url,
+    images: [
+      {
+        url: site.ogImage,
+        width: 1400,
+        height: 1050,
+        alt: "Omega Construction on site in Auckland",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Omega Construction | Commercial & Residential Builder Auckland",
+    description:
+      "Auckland commercial and residential builder established in 1994. Site Safe certified.",
+    images: [site.ogImage],
   },
   robots: { index: true, follow: true },
 };
@@ -51,6 +71,7 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface text-ink">
+        <JsonLd data={organizationJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

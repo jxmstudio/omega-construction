@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
 
 export const metadata: Metadata = {
-  title: "About Omega Construction | Auckland Builder Since 1994",
+  title: "About Us | Auckland Builder Since 1994",
   description:
     "Omega Construction was founded in 1994 by David Williams, a Registered Master Builder and Licensed Building Practitioner. Three decades of commercial and residential building across Auckland.",
   alternates: { canonical: "/about" },
