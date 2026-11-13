@@ -144,6 +144,44 @@ export const assurances = [
   },
 ] as const;
 
+/** Photo shown on each home-page service card, keyed by service slug. All Omega projects. */
+export const serviceImages: Record<string, { src: string; alt: string }> = {
+  "commercial-construction": {
+    src: "/projects/south-pacific-pictures/hero.jpg",
+    alt: "South Pacific Pictures administration building, built by Omega Construction",
+  },
+  "residential-building-renovations": {
+    src: "/projects/recent/sarsfield.jpg",
+    alt: "Architectural home extension on Sarsfield Street by Omega Construction",
+  },
+  "interior-fit-outs-refurbishment": {
+    src: "/projects/andrew-baxter-drive/1.jpg",
+    alt: "Open-plan office fit-out at Andrew Baxter Drive",
+  },
+  "alterations-structural-work": {
+    src: "/projects/recent/warkworth.jpg",
+    alt: "Structural steel and framing during a house alteration",
+  },
+  "seismic-strengthening": {
+    src: "/projects/andrew-baxter-drive/hero.jpg",
+    alt: "Structural steel canopy on a commercial building at Andrew Baxter Drive",
+  },
+  "recladding-weathertightness": {
+    src: "/projects/urban-oasis-ponsonby/3.jpg",
+    alt: "Fully reclad home on Lincoln Street, Ponsonby",
+  },
+  "hospitality-fit-outs": {
+    src: "/projects/recent/mercure.jpg",
+    alt: "Multi-storey commercial building exterior",
+  },
+};
+
+/** Brand marks for the two distributed products, keyed by product slug. */
+export const productLogos: Record<string, { src: string; width: number; height: number; alt: string }> = {
+  "cem-gon": { src: "/products/cem-gon/logo.png", width: 900, height: 168, alt: "Cem-Gon concrete splash removal system" },
+  "fab-form": { src: "/products/fab-form/logo.svg", width: 86, height: 22, alt: "Fab-Form" },
+};
+
 /** Headline stats from Dave's 2026 Company Profile. */
 export const stats = [
   { value: "86", label: "Projects completed" },

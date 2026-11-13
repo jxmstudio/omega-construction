@@ -2,9 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   credentials,
+  productLogos,
   products,
   projects,
   references,
+  serviceImages,
   services,
   site,
   stats,
@@ -40,6 +42,8 @@ export default function Home() {
           }}
         />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <div className="grid items-center gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
           <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white/70">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-bright" />
             Auckland · Established {site.established} · Registered Master Builder
@@ -64,6 +68,27 @@ export default function Home() {
             >
               Call {site.phone}
             </a>
+          </div>
+          </div>
+
+          <figure className="animate-fade-up lg:col-span-5 [animation-delay:200ms]">
+            <div className="relative aspect-[25/18] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15">
+              <Image
+                src="/brand/team-house-of-the-year.jpg"
+                alt="The Omega Construction team with their Silver award at the House of the Year awards"
+                fill
+                priority
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 flex items-center gap-2 text-sm text-white/70">
+              <span className="rounded bg-white/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
+                Silver award
+              </span>
+              The Omega crew at the House of the Year awards
+            </figcaption>
+          </figure>
           </div>
 
           <dl className="mt-16 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-white/10 pt-8 sm:grid-cols-4">
@@ -145,8 +170,20 @@ export default function Home() {
               <Reveal key={s.slug} delay={(i % 3) * 80} className="h-full">
                 <Link
                   href={`/services/${s.slug}`}
-                  className="group relative flex h-full flex-col rounded-lg border border-line-2 bg-surface p-7 transition-shadow hover:shadow-lg"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-line-2 bg-surface transition-shadow hover:shadow-lg"
                 >
+                  {serviceImages[s.slug] && (
+                    <div className="relative aspect-[16/10] overflow-hidden bg-ink-2">
+                      <Image
+                        src={serviceImages[s.slug].src}
+                        alt={serviceImages[s.slug].alt}
+                        fill
+                        sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-7">
                   <span className="font-display text-sm font-bold text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -163,6 +200,7 @@ export default function Home() {
                         {sec}
                       </span>
                     ))}
+                  </div>
                   </div>
                 </Link>
               </Reveal>
@@ -313,6 +351,17 @@ export default function Home() {
                 key={p.slug}
                 className="flex flex-col rounded-lg border border-line-2 bg-surface p-7"
               >
+                {productLogos[p.slug] && (
+                  <div className="mb-5 flex h-12 items-center">
+                    <Image
+                      src={productLogos[p.slug].src}
+                      alt={productLogos[p.slug].alt}
+                      width={productLogos[p.slug].width}
+                      height={productLogos[p.slug].height}
+                      className="h-10 w-auto rounded-sm"
+                    />
+                  </div>
+                )}
                 <span className="text-xs font-semibold uppercase tracking-wider text-accent">
                   {p.tagline}
                 </span>
