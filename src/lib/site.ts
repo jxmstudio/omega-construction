@@ -72,6 +72,78 @@ export const credentials = [
   { label: "$10M insured", note: "Public liability cover" },
 ] as const;
 
+/**
+ * Membership & certification marks, taken from the "Memberships &
+ * Certifications" page of Dave's 2026 Company Profile. All sit on white, so
+ * render them on a white tile. Files live in /public/credentials.
+ */
+export const credentialLogos = [
+  {
+    key: "master-builders",
+    src: "/credentials/master-builders.png",
+    width: 800,
+    height: 310,
+    alt: "Master Builders — Registered Master Builders Association member",
+    label: "Registered Master Builder",
+    note: "MBA #1951",
+    group: "membership",
+  },
+  {
+    key: "site-safe",
+    src: "/credentials/site-safe-member.png",
+    width: 600,
+    height: 430,
+    alt: "Site Safe member — Proud to be safe",
+    label: "Site Safe member",
+    note: "Site Smart H&S system",
+    group: "membership",
+  },
+  {
+    key: "lbp",
+    src: "/credentials/licensed-building-practitioner.png",
+    width: 600,
+    height: 600,
+    alt: "Licensed Building Practitioner — Building Confidence",
+    label: "Licensed Building Practitioner",
+    note: "LBP #102450",
+    group: "certification",
+  },
+  {
+    key: "bcito",
+    src: "/credentials/bcito-qualified.png",
+    width: 569,
+    height: 600,
+    alt: "BCITO Qualified Professional",
+    label: "BCITO Qualified Professional",
+    note: "Trade qualified",
+    group: "certification",
+  },
+] as const;
+
+/** David's NZ Trade Certificate in Carpentry (1988), shown on the About page. */
+export const tradeCertificate = {
+  src: "/credentials/trade-certificate-carpentry.jpg",
+  width: 700,
+  height: 1515,
+  alt: "New Zealand Trade Certificate in Carpentry awarded to David Anthony Williams, 1988",
+} as const;
+
+/** Insurance and workmanship cover — wording from the Company Profile. */
+export const assurances = [
+  {
+    title: "$10 million public liability insurance",
+    body: "We hold $10 million in public liability insurance. This is our way of protecting you, your family and our team.",
+  },
+  {
+    title: "Workmanship guarantee",
+    body: "We take full responsibility for the quality of workmanship, tradespeople, materials and the final finish of your project.",
+  },
+  {
+    title: "Licensed and on the public register",
+    body: "Our licence information is publicly available on the MBA and LBP registers — MBA #1951, LBP #102450.",
+  },
+] as const;
+
 /** Headline stats from Dave's 2026 Company Profile. */
 export const stats = [
   { value: "86", label: "Projects completed" },

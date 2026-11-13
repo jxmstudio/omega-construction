@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { credentials, processSteps, site, stats, values } from "@/lib/site";
+import { assurances, credentials, processSteps, site, stats, tradeCertificate, values } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
+import CredentialLogos from "@/components/CredentialLogos";
 
 export const metadata: Metadata = {
   title: "About Us | Auckland Builder Since 1994",
@@ -179,19 +180,35 @@ export default function AboutPage() {
                 bodies in New Zealand — the Master Builders Association and Site Safe.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4 self-center md:col-span-7">
-              {[
-                { k: "Master Builders Association", v: `MBA #${site.mbaNumber}` },
-                { k: "Licensed Building Practitioner", v: `LBP #${site.lbpNumber}` },
-                { k: "Site Safe member", v: "Site Smart H&S system" },
-                { k: "Public liability insurance", v: `${site.publicLiability} cover` },
-              ].map((c) => (
-                <div key={c.k} className="rounded-lg border border-white/10 bg-white/5 p-5">
-                  <div className="font-display text-base font-bold text-white">{c.k}</div>
-                  <div className="mt-1 text-xs text-white/50">{c.v}</div>
+            <div className="self-center md:col-span-7">
+              <CredentialLogos captions dark />
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-8 border-t border-white/10 pt-12 md:grid-cols-12">
+            <div className="grid items-start gap-4 self-center sm:grid-cols-3 md:col-span-9">
+              {assurances.map((a) => (
+                <div key={a.title} className="rounded-lg border border-white/10 bg-white/5 p-5">
+                  <div className="font-display text-base font-bold text-white">{a.title}</div>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60">{a.body}</p>
                 </div>
               ))}
             </div>
+            <figure className="md:col-span-3">
+              <div className="mx-auto max-w-[180px] overflow-hidden rounded-lg bg-white p-1.5 md:ml-auto md:mr-0">
+                <Image
+                  src={tradeCertificate.src}
+                  alt={tradeCertificate.alt}
+                  width={tradeCertificate.width}
+                  height={tradeCertificate.height}
+                  sizes="180px"
+                  className="h-auto w-full rounded"
+                />
+              </div>
+              <figcaption className="mt-3 text-center text-xs text-white/50 md:text-right">
+                David&apos;s NZ Trade Certificate in Carpentry
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>

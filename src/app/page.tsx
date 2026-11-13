@@ -15,6 +15,7 @@ import ProjectCarousel from "@/components/ProjectCarousel";
 import Reveal from "@/components/Reveal";
 import Counter from "@/components/Counter";
 import References from "@/components/References";
+import CredentialLogos from "@/components/CredentialLogos";
 
 export default function Home() {
   return (
@@ -80,13 +81,14 @@ export default function Home() {
 
       {/* ───────── Credentials strip ───────── */}
       <section className="border-b border-line bg-sand">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden px-6 md:grid-cols-4">
-          {credentials.map((c) => (
-            <div key={c.label} className="px-4 py-6 text-center">
-              <div className="font-display text-base font-bold text-ink">{c.label}</div>
-              <div className="mt-1 text-xs text-mute">{c.note}</div>
-            </div>
-          ))}
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <CredentialLogos captions />
+          <p className="mt-6 text-center text-sm text-slate">
+            <span className="font-semibold text-ink">{site.publicLiability} public liability insurance</span>
+            {" · "}
+            <span className="font-semibold text-ink">Workmanship guarantee</span> — we take full
+            responsibility for workmanship, tradespeople, materials and the final finish.
+          </p>
         </div>
       </section>
 

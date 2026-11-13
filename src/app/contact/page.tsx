@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { careers, site } from "@/lib/site";
+import { assurances, careers, site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
+import CredentialLogos from "@/components/CredentialLogos";
 
 export const metadata: Metadata = {
   title: "Contact & Request a Quote",
@@ -70,6 +71,22 @@ export default function ContactPage() {
                   Call {site.phone}
                 </a>
               </div>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-line-2 bg-surface p-7">
+              <h3 className="font-display text-lg font-bold text-ink">Licensed, insured, guaranteed</h3>
+              <CredentialLogos variant="compact" className="mt-4" />
+              <ul className="mt-5 space-y-3 text-sm">
+                {assurances.map((a) => (
+                  <li key={a.title} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                    <div>
+                      <div className="font-semibold text-ink">{a.title}</div>
+                      <div className="leading-relaxed text-slate">{a.body}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {careers.hiring && (

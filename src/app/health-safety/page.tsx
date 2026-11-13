@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import CredentialLogos from "@/components/CredentialLogos";
 
 export const metadata: Metadata = {
   title: "Health & Safety | Site Safe Member",
@@ -83,6 +84,7 @@ export default function HealthSafetyPage() {
               </p>
             </div>
           </div>
+          <CredentialLogos captions className="mt-12" />
         </div>
       </section>
 

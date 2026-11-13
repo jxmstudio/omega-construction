@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import CredentialLogos from "@/components/CredentialLogos";
 import { credentials, nav, services, site } from "@/lib/site";
 import { areas } from "@/lib/areas";
 
@@ -90,7 +91,8 @@ export default function Footer() {
             </li>
             <li>{site.address}</li>
           </ul>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <CredentialLogos variant="compact" className="mt-5" />
+          <div className="mt-3 flex flex-wrap gap-2">
             {credentials.map((c) => (
               <span
                 key={c.label}
