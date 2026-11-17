@@ -72,21 +72,24 @@ export default function Home() {
           </div>
 
           <figure className="animate-fade-up lg:col-span-5 [animation-delay:200ms]">
-            <div className="relative aspect-[25/18] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15">
+            <Link
+              href="/projects/urban-oasis-ponsonby"
+              className="group relative block aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15"
+            >
               <Image
-                src="/brand/team-house-of-the-year.jpg"
-                alt="The Omega Construction team with their Silver award at the House of the Year awards"
+                src="/projects/urban-oasis-ponsonby/front-of-house.jpg"
+                alt="Urban Oasis, Ponsonby: a full structural rebuild and reclad by Omega Construction"
                 fill
                 priority
                 sizes="(min-width: 1024px) 480px, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-            </div>
+            </Link>
             <figcaption className="mt-3 flex items-center gap-2 text-sm text-white/70">
               <span className="rounded bg-white/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
-                Silver award
+                Recent build
               </span>
-              The Omega crew at the House of the Year awards
+              Urban Oasis · Lincoln Street, Ponsonby
             </figcaption>
           </figure>
           </div>
@@ -125,6 +128,23 @@ export default function Home() {
             <h2 className="mt-4 font-display text-3xl font-bold text-ink md:text-4xl">
               An established builder, matched by a team that delivers.
             </h2>
+            <figure className="mt-8">
+              <div className="relative aspect-[25/18] overflow-hidden rounded-lg border border-line-2">
+                <Image
+                  src="/brand/team-house-of-the-year.jpg"
+                  alt="The Omega Construction team with their Silver award at the House of the Year awards"
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 flex items-center gap-2 text-sm text-mute">
+                <span className="rounded bg-sand px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-ink">
+                  Silver award
+                </span>
+                The Omega crew at the House of the Year awards
+              </figcaption>
+            </figure>
           </div>
           <div className="md:col-span-7">
             <p className="text-lg leading-relaxed text-slate">
